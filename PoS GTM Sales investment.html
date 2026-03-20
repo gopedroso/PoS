@@ -1,0 +1,5070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PoS GTM Sales Invesment — Executive summary + TAM through P&amp;L (8 slides)</title>
+  <style>
+    /* Nuvemshop Slides Design System (Nimbus tokens + chart patterns) */
+    :root {
+      --color-primary: #0059d5;
+      --color-primary-light: #3d7fe0;
+      --color-primary-dark: #0044a8;
+      --color-dark: #000b19;
+      --color-dark-lighter: #001a3d;
+      --color-white: #ffffff;
+      --color-gray-100: #f5f7fa;
+      --color-gray-200: #e8ecf0;
+      --color-gray-400: #9ca3af;
+      --color-gray-600: #4b5563;
+      --bar-cyan: #5ecfff;
+      /* Country standard — charts: BR green, AR blue, MX red (gradients: light → dark) */
+      --chart-br-a: #4ade80;
+      --chart-br-b: #15803d;
+      --chart-ar-a: #60a5fa;
+      --chart-ar-b: #1e40af;
+      --chart-mx-a: #f87171;
+      --chart-mx-b: #991b1b;
+      /* Non-country stacks (e.g. GMV bands on Slide 1) — keep distinct from BR/AR/MX */
+      --chart-size-a: #c4b5fd;
+      --chart-size-b: #5b21b6;
+      --chart-size2-a: #fcd34d;
+      --chart-size2-b: #b45309;
+      --chart-size3-a: rgba(255, 255, 255, 0.42);
+      --chart-size3-b: var(--color-gray-600);
+      --green-bg: rgba(34, 197, 94, 0.38);
+      --green-border: rgba(34, 197, 94, 0.55);
+      --cyan-bg: rgba(94, 207, 255, 0.3);
+      --cyan-border: rgba(94, 207, 255, 0.5);
+      --section-padding: clamp(1.25rem, 4vw, 3.5rem);
+      --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--color-dark);
+      color: var(--color-gray-100);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    .slide-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      overflow-y: auto;
+      width: 100%;
+      padding: 0 1rem;
+      position: relative;
+    }
+
+    .slide-opportunity__bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 120% 80% at 20% 0%, rgba(0, 89, 213, 0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 100% 60% at 100% 100%, rgba(0, 68, 168, 0.18) 0%, transparent 50%),
+        var(--color-dark);
+      pointer-events: none;
+    }
+
+    /* All slides share the same content width (section flex-centers this block) */
+    .slide-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1680px;
+      padding: var(--section-padding);
+    }
+
+    .slide-kicker {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-primary-light);
+      margin: 0 0 0.5rem;
+    }
+
+    .slide-title {
+      font-size: clamp(1.55rem, 3.2vw, 2.35rem);
+      font-weight: 800;
+      line-height: 1.12;
+      color: var(--color-white);
+      margin: 0 0 0.45rem;
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .slide-subtitle {
+      font-size: clamp(0.95rem, 1.4vw, 1.12rem);
+      color: var(--color-gray-400);
+      margin: 0 0 1.25rem;
+      max-width: 100%;
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+
+    /* Optional model totals under Slide 1 subtitle (data, not the headline) */
+    .slide-figure-line {
+      font-size: clamp(0.88rem, 1.2vw, 1.02rem);
+      color: var(--color-gray-400);
+      margin: -0.65rem 0 1.25rem;
+      max-width: 100%;
+      line-height: 1.45;
+    }
+
+    .insights-card {
+      margin-bottom: 1.5rem;
+      padding: 1.15rem 1.35rem 1.25rem;
+    }
+
+    .insights-title {
+      font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+      font-weight: 800;
+      color: var(--color-white);
+      margin: 0 0 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .insights-list {
+      margin: 0;
+      padding-left: 1.35rem;
+      color: var(--color-gray-200);
+      font-size: clamp(0.88rem, 1.15vw, 1rem);
+      line-height: 1.5;
+    }
+
+    .insights-list li {
+      margin-bottom: 0.55rem;
+    }
+
+    .insights-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .insights-list strong {
+      color: var(--color-white);
+      font-weight: 700;
+    }
+
+    /* Country | Size — always two columns beside each other from ~721px up */
+    .layout-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(0.75rem, 2vw, 1.75rem);
+      align-items: start;
+      width: 100%;
+    }
+
+    @media (max-width: 720px) {
+      .layout-two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card-glass {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      backdrop-filter: blur(8px);
+      padding: 1.25rem 1.5rem 1.5rem;
+    }
+
+    .panel-title {
+      font-size: clamp(1.1rem, 1.65vw, 1.35rem);
+      font-weight: 700;
+      color: var(--color-white);
+      margin: 0 0 1rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Three metrics (# stores, GMV, revenue) side by side within each panel */
+    .metric-stack {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.65rem 0.45rem;
+      align-items: start;
+      width: 100%;
+    }
+
+    @media (max-width: 900px) {
+      .metric-stack {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .metric-block {
+      min-width: 0;
+    }
+
+    .metric-block__label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-gray-400);
+      margin: 0 0 0.55rem;
+    }
+
+    /* Stacked column: 100% of total for this metric */
+    .chart-container {
+      display: flex;
+      align-items: stretch;
+      gap: 0.3rem;
+      min-height: 0;
+    }
+
+    .stacked-chart__main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .stacked-col {
+      --col-h: 198px;
+      width: 100%;
+      max-width: min(100%, 86px);
+      height: var(--col-h);
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: stretch;
+      justify-content: flex-end;
+      border-radius: 6px 6px 2px 2px;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .stacked-col {
+        --col-h: 200px;
+        max-width: 92px;
+      }
+    }
+
+    .stack-seg {
+      --col-h: inherit;
+      width: 100%;
+      height: 0;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 4px;
+      position: relative;
+      opacity: 0;
+      overflow: hidden;
+    }
+
+    .chart-container.animate .stack-seg {
+      animation: stackH 1.15s var(--transition-smooth) forwards;
+      animation-delay: var(--delay, 0s);
+    }
+
+    @keyframes stackH {
+      from {
+        height: 0;
+        opacity: 0;
+      }
+      to {
+        height: calc(var(--fr) * var(--col-h));
+        opacity: 1;
+      }
+    }
+
+    .stack-seg .seg-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 0.05rem;
+      line-height: 1.1;
+      max-width: 100%;
+    }
+
+    .seg-pct {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--color-white);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+    }
+
+    .seg-val {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.92);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Thin slices: compact label; full detail in tooltip (title) */
+    .stack-seg.seg--thin .seg-val {
+      display: none;
+    }
+
+    .stack-seg.seg--thin .seg-pct {
+      font-size: 0.62rem;
+    }
+
+    .stack-seg.bar-country-0 {
+      background: linear-gradient(180deg, var(--chart-br-a) 0%, var(--chart-br-b) 100%);
+    }
+
+    .stack-seg.bar-country-1 {
+      background: linear-gradient(180deg, var(--chart-ar-a) 0%, var(--chart-ar-b) 100%);
+    }
+
+    .stack-seg.bar-country-2 {
+      background: linear-gradient(180deg, var(--chart-mx-a) 0%, var(--chart-mx-b) 100%);
+    }
+
+    .stack-seg.bar-size-0 {
+      background: linear-gradient(180deg, var(--chart-size-a) 0%, var(--chart-size-b) 100%);
+    }
+
+    .stack-seg.bar-size-1 {
+      background: linear-gradient(180deg, var(--chart-size2-a) 0%, var(--chart-size2-b) 100%);
+    }
+
+    .stack-seg.bar-size-2 {
+      background: linear-gradient(180deg, var(--chart-size3-a) 0%, var(--chart-size3-b) 100%);
+    }
+
+    .stacked-x-label {
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--color-gray-400);
+      margin-top: 0.4rem;
+      text-align: center;
+    }
+
+    .stacked-total {
+      margin: 0.5rem 0 0;
+      font-size: 0.78rem;
+      color: var(--color-gray-400);
+      text-align: center;
+    }
+
+    .stacked-total strong {
+      color: var(--color-gray-200);
+      font-weight: 600;
+    }
+
+    .chart-y-axis {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 2.15rem;
+      font-size: 0.65rem;
+      color: var(--color-gray-400);
+      text-align: right;
+      padding-bottom: 1.45rem;
+      flex-shrink: 0;
+    }
+
+    .chart-legend-inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem 1.15rem;
+      margin-top: 0.85rem;
+      font-size: 0.82rem;
+      color: var(--color-gray-400);
+    }
+
+    .chart-legend-inline span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .legend-dot-country-0 {
+      background: linear-gradient(180deg, var(--chart-br-a), var(--chart-br-b));
+    }
+
+    .legend-dot-country-1 {
+      background: linear-gradient(180deg, var(--chart-ar-a), var(--chart-ar-b));
+    }
+
+    .legend-dot-country-2 {
+      background: linear-gradient(180deg, var(--chart-mx-a), var(--chart-mx-b));
+    }
+
+    .legend-dot-size-0 {
+      background: linear-gradient(180deg, var(--chart-size-a), var(--chart-size-b));
+    }
+
+    .legend-dot-size-1 {
+      background: linear-gradient(180deg, var(--chart-size2-a), var(--chart-size2-b));
+    }
+
+    .legend-dot-size-2 {
+      background: linear-gradient(180deg, var(--chart-size3-a), var(--chart-size3-b));
+    }
+
+    .slide-footer {
+      margin-top: 1.75rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.82rem;
+      color: var(--color-gray-400);
+      line-height: 1.5;
+    }
+
+    .slide-footer strong {
+      color: var(--color-gray-200);
+      font-weight: 600;
+    }
+
+    .slide-footer a {
+      color: var(--color-primary-light);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    .slide-footer a:hover {
+      color: var(--color-white);
+    }
+
+    .slide-footnote {
+      margin: 0.75rem 0 0;
+      font-size: 0.78rem;
+      color: var(--color-gray-600);
+      line-height: 1.45;
+    }
+
+    .slide-footnote strong {
+      color: var(--color-gray-400);
+      font-weight: 600;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .chart-container .stack-seg {
+        animation: none !important;
+        height: calc(var(--fr) * var(--col-h));
+        opacity: 1;
+      }
+    }
+
+    a.footer-link {
+      color: var(--color-primary-light);
+      text-decoration: none;
+    }
+
+    a.footer-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Deck navigation */
+    .slide-nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem 0.75rem;
+      margin-bottom: 1.1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .slide-nav a {
+      color: var(--color-primary-light);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .slide-nav a:hover {
+      text-decoration: underline;
+    }
+
+    .slide-nav a[aria-current="page"] {
+      color: var(--color-white);
+    }
+
+    .slide-nav__sep {
+      color: var(--color-gray-600);
+      font-size: 0.85rem;
+    }
+
+    /* —— Slide 2: GMV matrix —— */
+    .slide-hero__bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 120% 80% at 20% 0%, rgba(0, 89, 213, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 50% at 100% 90%, rgba(94, 207, 255, 0.12) 0%, transparent 50%),
+        var(--color-dark);
+      pointer-events: none;
+    }
+
+    .slide-gmv .slide-title {
+      font-size: clamp(1.45rem, 3vw, 2.1rem);
+      line-height: 1.15;
+      max-width: 100%;
+    }
+
+    .slide-gmv .insights-list {
+      color: var(--color-gray-100);
+      font-size: clamp(0.9rem, 1.2vw, 1.02rem);
+      line-height: 1.52;
+    }
+
+    .slide-gmv .card-glass.mb-gmv {
+      margin-bottom: 1.35rem;
+    }
+
+    .callouts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .slide-gmv .callouts {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 960px) {
+      .slide-gmv .callouts {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1320px) {
+      .slide-gmv .callouts {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .callouts {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .callout {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: clamp(0.85rem, 2.2vw, 1.35rem);
+      border-radius: 12px;
+      padding: 1rem 1.15rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .callout--green {
+      background: var(--green-bg);
+      border-color: var(--green-border);
+    }
+
+    .callout--cyan {
+      background: var(--cyan-bg);
+      border-color: var(--cyan-border);
+    }
+
+    .callout--mint {
+      background: rgba(52, 211, 153, 0.42);
+      border-color: rgba(167, 243, 208, 0.65);
+    }
+
+    .callout--mint .callout__label {
+      color: rgba(236, 253, 245, 0.95);
+    }
+
+    .callout--mint .callout__label strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .callout--mint .callout__val {
+      color: #ecfdf5;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .callout--violet-plg {
+      background: rgba(139, 92, 246, 0.28);
+      border-color: rgba(196, 181, 253, 0.52);
+    }
+
+    .callout--violet-plg .callout__label {
+      color: rgba(237, 233, 254, 0.95);
+    }
+
+    .callout--violet-plg .callout__label strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .callout--violet-plg .callout__val {
+      color: #ede9fe;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+    }
+
+    .callout__val {
+      flex-shrink: 0;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      color: var(--color-white);
+      margin: 0;
+      line-height: 1.05;
+    }
+
+    .callout__label {
+      flex: 1;
+      min-width: 0;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.92);
+      margin: 0;
+    }
+
+    @media (max-width: 720px) {
+      .callout {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .callout__val {
+        margin-bottom: 0.35rem;
+      }
+    }
+
+    .matrix-caption {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--color-gray-400);
+      margin: 0 0 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .matrix-scroll {
+      overflow-x: auto;
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.35rem;
+    }
+
+    .matrix {
+      display: grid;
+      grid-template-columns: minmax(10rem, 1.15fr) repeat(3, minmax(5.5rem, 1fr)) minmax(4.5rem, 0.75fr);
+      grid-template-rows: auto repeat(3, minmax(4.75rem, auto)) auto;
+      gap: 4px;
+      min-width: min(100%, 640px);
+    }
+
+    .matrix-corner {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.5rem;
+      font-size: 0.68rem;
+      line-height: 1.35;
+      color: var(--color-gray-400);
+      display: flex;
+      align-items: center;
+    }
+
+    .matrix-hdr {
+      background: rgba(255, 255, 255, 0.14);
+      padding: 0.55rem 0.4rem;
+      font-size: clamp(0.72rem, 1.1vw, 0.82rem);
+      font-weight: 700;
+      text-align: center;
+      color: var(--color-white);
+      line-height: 1.25;
+    }
+
+    .matrix-rowlabel {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.45rem 0.55rem;
+      font-size: clamp(0.72rem, 1.05vw, 0.82rem);
+      font-weight: 700;
+      color: var(--color-white);
+      line-height: 1.25;
+      display: flex;
+      align-items: center;
+    }
+
+    .matrix-cell {
+      background: rgba(0, 89, 213, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(1.05rem, 2.2vw, 1.45rem);
+      font-weight: 800;
+      color: var(--color-primary-light);
+    }
+
+    .matrix-cell--core {
+      background: var(--green-bg);
+      border-color: var(--green-border);
+      color: #d1fae5;
+    }
+
+    .matrix-cell--gap {
+      background: var(--cyan-bg);
+      border-color: var(--cyan-border);
+      color: #ecfeff;
+    }
+
+    .matrix-cell--smb-anchor {
+      background: rgba(139, 92, 246, 0.3);
+      border-color: rgba(196, 181, 253, 0.5);
+      color: #ede9fe;
+    }
+
+    .matrix-cell--mint {
+      background: rgba(52, 211, 153, 0.42);
+      border-color: rgba(167, 243, 208, 0.65);
+      color: #ecfdf5;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+    }
+
+    .matrix-cell--total {
+      background: rgba(255, 255, 255, 0.12);
+      font-size: clamp(0.98rem, 1.9vw, 1.25rem);
+      color: var(--color-white);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .matrix-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.5rem;
+      margin-top: 1rem;
+      font-size: 0.88rem;
+      color: var(--color-gray-400);
+    }
+
+    .matrix-legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .lg-swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .lg-swatch--core {
+      background: var(--green-bg);
+      border: 1px solid var(--green-border);
+    }
+
+    .lg-swatch--gap {
+      background: var(--cyan-bg);
+      border: 1px solid var(--cyan-border);
+    }
+
+    .lg-swatch--smb-anchor {
+      background: rgba(139, 92, 246, 0.3);
+      border: 1px solid rgba(196, 181, 253, 0.5);
+    }
+
+    .lg-swatch--mint {
+      background: rgba(52, 211, 153, 0.42);
+      border: 1px solid rgba(167, 243, 208, 0.65);
+    }
+
+    .slide-gmv .slide-footer strong {
+      color: #e5e7eb;
+    }
+
+    /* —— Slide 3: Sales-Led unit economics (by region) —— */
+    .slide-econ__bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 100% 70% at 10% 20%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 50% at 95% 80%, rgba(0, 89, 213, 0.15) 0%, transparent 50%),
+        var(--color-dark);
+      pointer-events: none;
+    }
+
+    .slide-econ .slide-title {
+      max-width: 100%;
+    }
+
+    .econ-regions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(1rem, 2.5vw, 1.75rem);
+      align-items: start;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 820px) {
+      .econ-regions {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .econ-region {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 1.1rem 1.15rem 1.25rem;
+    }
+
+    .econ-region--br {
+      border-left: 3px solid var(--chart-br-b);
+    }
+
+    .econ-region--ar {
+      border-left: 3px solid var(--chart-ar-b);
+    }
+
+    .econ-region__head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.35rem 0.75rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .econ-region__name {
+      margin: 0;
+      font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+      font-weight: 800;
+      color: var(--color-white);
+    }
+
+    .econ-region__pay {
+      margin: 0;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-gray-400);
+    }
+
+    .econ-region__pay strong {
+      color: var(--color-primary-light);
+      font-weight: 700;
+    }
+
+    .econ-region-fees {
+      margin: -0.35rem 0 1rem;
+      padding: 0.75rem 0.85rem 0.8rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+    }
+
+    .econ-region-fees .econ-kv {
+      margin-bottom: 0;
+    }
+
+    .econ-region-fees .econ-kv li {
+      font-size: 0.74rem;
+    }
+
+    .econ-kv-heading {
+      margin: 0 0 0.35rem;
+      font-size: 0.62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--color-primary-light);
+    }
+
+    .econ-seg .econ-kv {
+      margin-bottom: 0.65rem;
+    }
+
+    .econ-seg .econ-kv:last-child {
+      margin-bottom: 0;
+    }
+
+    .econ-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+    }
+
+    @media (max-width: 520px) {
+      .econ-pair {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .econ-seg {
+      background: rgba(0, 89, 213, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 0.85rem 0.9rem 0.95rem;
+      min-width: 0;
+    }
+
+    .econ-seg--up {
+      background: rgba(94, 207, 255, 0.12);
+      border-color: rgba(94, 207, 255, 0.25);
+    }
+
+    .econ-seg__title {
+      margin: 0 0 0.15rem;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-white);
+    }
+
+    .econ-seg__band {
+      margin: 0 0 0.65rem;
+      font-size: 0.75rem;
+      color: var(--color-gray-400);
+      line-height: 1.4;
+    }
+
+    .econ-seg__band strong {
+      color: var(--color-white);
+    }
+
+    .econ-payback {
+      text-align: center;
+      background: var(--green-bg);
+      border: 1px solid var(--green-border);
+      border-radius: 10px;
+      padding: 0.55rem 0.5rem 0.6rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .econ-payback__n {
+      display: block;
+      font-size: clamp(1.65rem, 3.5vw, 2.15rem);
+      font-weight: 800;
+      color: #ecfdf5;
+      line-height: 1;
+    }
+
+    .econ-payback__u {
+      display: block;
+      margin-top: 0.2rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: rgba(236, 253, 245, 0.9);
+    }
+
+    .econ-payback-pos {
+      margin: 0 0 0.55rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--color-gray-400);
+    }
+
+    .econ-kv {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .econ-kv li {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.35rem 0.5rem;
+      align-items: baseline;
+      font-size: 0.78rem;
+      padding: 0.28rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      color: var(--color-gray-300, #d1d5db);
+    }
+
+    .econ-kv li:last-child {
+      border-bottom: none;
+    }
+
+    .econ-kv span:first-child {
+      color: var(--color-gray-400);
+    }
+
+    .econ-kv span:last-child {
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      color: var(--color-white);
+      text-align: right;
+    }
+
+    .slide-econ .slide-footer strong {
+      color: #e5e7eb;
+    }
+
+    /* —— Slide 4: QoQ ramp — by country BR/AR (merchants, GMV, adoption, OffPay GPV) —— */
+    .slide-ramp__bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 90% 60% at 50% 0%, rgba(94, 207, 255, 0.1) 0%, transparent 45%),
+        radial-gradient(ellipse 70% 45% at 0% 100%, rgba(0, 89, 213, 0.14) 0%, transparent 50%),
+        var(--color-dark);
+      pointer-events: none;
+    }
+
+    .ramp-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(0.85rem, 2vw, 1.35rem);
+      align-items: start;
+      width: 100%;
+    }
+
+    @media (max-width: 900px) {
+      .ramp-two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ramp-side__title {
+      margin: 0 0 0.65rem;
+      font-size: clamp(0.92rem, 1.3vw, 1.05rem);
+      font-weight: 800;
+      color: var(--color-white);
+      letter-spacing: 0.02em;
+    }
+
+    .ramp-panels-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .ramp-panels-stack .ramp-chart {
+      --ramp-h: 128px;
+    }
+
+    .ramp-panels-stack .ramp-panel {
+      padding: 0.78rem 0.85rem 0.88rem;
+    }
+
+    .ramp-panels-stack .ramp-panel__hint {
+      margin-bottom: 0.55rem;
+      font-size: 0.72rem;
+    }
+
+    .ramp-col__num {
+      display: block;
+      width: 100%;
+      flex-shrink: 0;
+      font-size: 0.64rem;
+      font-weight: 800;
+      color: var(--color-white);
+      text-align: center;
+      line-height: 1.15;
+      margin-bottom: 0.12rem;
+      letter-spacing: 0.02em;
+    }
+
+    .ramp-seg--tagged {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 14px;
+    }
+
+    .ramp-seg__lbl {
+      font-size: 0.5rem;
+      font-weight: 800;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.88);
+      line-height: 1.05;
+      text-align: center;
+      padding: 0 2px;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    @media (min-width: 1100px) {
+      .ramp-seg__lbl {
+        font-size: 0.56rem;
+      }
+    }
+
+    .ramp-seg__lbl--inbar {
+      font-size: 0.58rem;
+    }
+
+    /* Slide 4 — BR / AR use global country green / blue on every split metric */
+    .ramp-seg--s4m1-br,
+    .ramp-seg--s4m2-br,
+    .ramp-seg--s4m3-br,
+    .ramp-seg--s4m4-br {
+      background: linear-gradient(180deg, var(--chart-br-a) 0%, var(--chart-br-b) 100%);
+    }
+
+    .ramp-seg--s4m1-ar,
+    .ramp-seg--s4m2-ar,
+    .ramp-seg--s4m3-ar,
+    .ramp-seg--s4m4-ar {
+      background: linear-gradient(180deg, var(--chart-ar-a) 0%, var(--chart-ar-b) 100%);
+    }
+
+    .ramp-legend i.ramp-lg-s4m1-br,
+    .ramp-legend i.ramp-lg-s4m2-br,
+    .ramp-legend i.ramp-lg-s4m4-br {
+      background: linear-gradient(180deg, var(--chart-br-a), var(--chart-br-b));
+    }
+
+    .ramp-legend i.ramp-lg-s4m1-ar,
+    .ramp-legend i.ramp-lg-s4m2-ar,
+    .ramp-legend i.ramp-lg-s4m4-ar {
+      background: linear-gradient(180deg, var(--chart-ar-a), var(--chart-ar-b));
+    }
+
+    .ramp-legend i.ramp-lg-s4m3-br {
+      background: linear-gradient(180deg, var(--chart-br-a), var(--chart-br-b));
+    }
+
+    .ramp-legend i.ramp-lg-s4m3-ar {
+      background: linear-gradient(180deg, var(--chart-ar-a), var(--chart-ar-b));
+    }
+
+    /* Slide 4 — gateway adoption: grouped columns (BR | AR) per quarter, scale vs max % */
+    .ramp-chart--adoption .ramp-chart__inner {
+      min-width: min(100%, 11 * 52px);
+    }
+
+    /* Room for % labels anchored above each bar (tallest bars need headroom) */
+    .ramp-chart.ramp-chart--adoption {
+      padding-top: 14px;
+    }
+
+    .ramp-col--adopt {
+      flex: 1 1 34px;
+      max-width: 58px;
+      min-width: 34px;
+    }
+
+    .ramp-adopt-pair {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 4px;
+      width: 100%;
+    }
+
+    .ramp-adopt-cell {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-end;
+    }
+
+    /* Labels sit on top of each bar (not a single row above the chart): position vs --frac inside the track */
+    .ramp-bar-track__inner--adopt {
+      position: relative;
+    }
+
+    .ramp-bar-track__inner--adopt .ramp-adopt-val {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: calc(var(--frac) * var(--ramp-h) + 4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.5rem;
+      font-weight: 800;
+      color: var(--color-gray-100);
+      text-align: center;
+      white-space: nowrap;
+      line-height: 1;
+      overflow: visible;
+      width: 100%;
+      max-width: 100%;
+      pointer-events: none;
+      z-index: 2;
+      transition: bottom 0.9s var(--transition-smooth);
+    }
+
+    @media (min-width: 1100px) {
+      .ramp-bar-track__inner--adopt .ramp-adopt-val {
+        font-size: 0.54rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ramp-bar-track__inner--adopt .ramp-adopt-val {
+        transition: none !important;
+      }
+    }
+
+    .ramp-bar-track--adopt .ramp-bar-track__inner {
+      width: 100%;
+    }
+
+    .ramp-adopt-pair--nm {
+      height: var(--ramp-h);
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      box-sizing: border-box;
+    }
+
+    .ramp-adopt-nm {
+      font-size: 0.55rem;
+      font-weight: 700;
+      color: var(--color-gray-500);
+      letter-spacing: 0.02em;
+    }
+
+    /* Slide 4: four charts in a 2×2 grid (TL stores, TR PoS GMV, BL adoption, BR OffPay GPV) */
+    .ramp-panels-stack.ramp-panels-stack--slide4 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: clamp(0.85rem, 1.6vw, 1.25rem);
+      align-items: stretch;
+    }
+
+    @media (max-width: 900px) {
+      .ramp-panels-stack.ramp-panels-stack--slide4 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ramp-panels-stack--slide4 .ramp-panel {
+      min-width: 0;
+    }
+
+    .ramp-panels-stack--slide4 .ramp-chart {
+      --ramp-h: 132px;
+    }
+
+    .ramp-seg--sz0 {
+      background: linear-gradient(180deg, var(--chart-size-a) 0%, var(--chart-size-b) 100%);
+    }
+
+    .ramp-seg--sz1 {
+      background: linear-gradient(180deg, var(--chart-size2-a) 0%, var(--chart-size2-b) 100%);
+    }
+
+    .ramp-seg--sz2 {
+      background: linear-gradient(180deg, var(--chart-size3-a) 0%, var(--chart-size3-b) 100%);
+    }
+
+    .ramp-legend i.ramp-lg-sz0 {
+      background: linear-gradient(180deg, var(--chart-size-a), var(--chart-size-b));
+    }
+
+    .ramp-legend i.ramp-lg-sz1 {
+      background: linear-gradient(180deg, var(--chart-size2-a), var(--chart-size2-b));
+    }
+
+    .ramp-legend i.ramp-lg-sz2 {
+      background: linear-gradient(180deg, var(--chart-size3-a), var(--chart-size3-b));
+    }
+
+    .ramp-legend i.ramp-lg-gmv {
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.9) 0%, rgba(217, 119, 6, 0.95) 100%);
+    }
+
+    .ramp-seg--gmv {
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.88) 0%, rgba(217, 119, 6, 0.95) 100%);
+    }
+
+    .ramp-chart--share .ramp-seg--mono {
+      background: linear-gradient(180deg, rgba(94, 207, 255, 0.5) 0%, rgba(0, 89, 213, 0.85) 100%);
+    }
+
+    .ramp-charts-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.1rem;
+      width: 100%;
+    }
+
+    .ramp-panel {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 1rem 1.1rem 1.15rem;
+      min-width: 0;
+    }
+
+    .ramp-panel__title {
+      font-size: clamp(0.95rem, 1.35vw, 1.08rem);
+      font-weight: 700;
+      color: var(--color-white);
+      margin: 0 0 0.35rem;
+    }
+
+    .ramp-panel__hint {
+      margin: 0 0 0.85rem;
+      font-size: 0.78rem;
+      line-height: 1.4;
+      color: var(--color-gray-400);
+    }
+
+    .ramp-chart {
+      --ramp-h: 168px;
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: 0.25rem;
+    }
+
+    .ramp-chart__inner {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      gap: 5px;
+      min-width: min(100%, 11 * 44px);
+      margin: 0 auto;
+    }
+
+    .ramp-col {
+      flex: 1 1 28px;
+      max-width: 46px;
+      min-width: 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .ramp-bar-track {
+      width: 100%;
+      height: var(--ramp-h);
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .ramp-bar-track__inner {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      min-height: 0;
+      width: 100%;
+    }
+
+    .ramp-bar-spacer {
+      flex: 1 1 0;
+      min-height: 0;
+    }
+
+    .ramp-bar {
+      width: 100%;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: stretch;
+      justify-content: flex-start;
+      height: 0;
+      min-height: 0;
+      overflow: hidden;
+      border-radius: 4px 4px 0 0;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+      transition: height 0.9s var(--transition-smooth);
+    }
+
+    .ramp-chart.ramp-chart--ready .ramp-bar {
+      height: calc(var(--frac) * var(--ramp-h));
+    }
+
+    .ramp-seg--br {
+      width: 100%;
+      flex-shrink: 0;
+      background: linear-gradient(180deg, var(--chart-br-a) 0%, var(--chart-br-b) 100%);
+    }
+
+    .ramp-seg--ar {
+      width: 100%;
+      flex-shrink: 0;
+      background: linear-gradient(180deg, var(--chart-ar-a) 0%, var(--chart-ar-b) 100%);
+    }
+
+    .ramp-seg--mono {
+      width: 100%;
+      height: 100%;
+      flex: 1 0 auto;
+      min-height: 2px;
+      background: linear-gradient(180deg, #a78bfa 0%, #6d28d9 100%);
+    }
+
+    .ramp-col__lab {
+      margin-top: 0.38rem;
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: var(--color-gray-400);
+      text-align: center;
+      line-height: 1.15;
+      white-space: nowrap;
+    }
+
+    .ramp-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      margin-top: 0.65rem;
+      font-size: 0.78rem;
+      color: var(--color-gray-400);
+    }
+
+    .ramp-legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .ramp-legend i {
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .ramp-legend i.ramp-lg-br {
+      background: linear-gradient(180deg, var(--chart-br-a), var(--chart-br-b));
+    }
+
+    .ramp-legend i.ramp-lg-ar {
+      background: linear-gradient(180deg, var(--chart-ar-a), var(--chart-ar-b));
+    }
+
+    .ramp-legend i.ramp-lg-gpv {
+      background: linear-gradient(180deg, rgba(34, 197, 94, 0.85), rgba(22, 163, 74, 0.95));
+    }
+
+    .ramp-end-cap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem 1.25rem;
+      margin: 0.85rem 0 0;
+      padding: 0.65rem 0.85rem;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.78rem;
+      color: var(--color-gray-400);
+    }
+
+    .ramp-end-cap strong {
+      color: var(--color-white);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ramp-bar {
+        transition: none !important;
+      }
+
+      .ramp-chart .ramp-bar {
+        height: calc(var(--frac) * var(--ramp-h)) !important;
+      }
+    }
+
+    /* —— Slide 5: Annual P&L —— */
+    .slide-pl__bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 85% 55% at 80% 10%, rgba(0, 89, 213, 0.16) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 0% 90%, rgba(34, 197, 94, 0.08) 0%, transparent 45%),
+        var(--color-dark);
+      pointer-events: none;
+    }
+
+    .pl-scroll {
+      overflow-x: auto;
+      margin: 0 0 1rem;
+      padding-bottom: 0.35rem;
+      border-radius: 12px;
+    }
+
+    .pl-table {
+      width: 100%;
+      min-width: 32rem;
+      border-collapse: collapse;
+      font-size: clamp(0.78rem, 1.05vw, 0.88rem);
+      color: var(--color-gray-200);
+    }
+
+    .pl-table caption {
+      caption-side: top;
+      text-align: left;
+      font-weight: 700;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-gray-400);
+      padding: 0 0 0.6rem;
+    }
+
+    .pl-table th,
+    .pl-table td {
+      padding: 0.42rem 0.55rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .pl-table th[scope="col"] {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--color-white);
+      font-weight: 700;
+    }
+
+    /* Corner header must line up with row labels (e.g. Gross revenue · Total), not centered/right */
+    .slide-pl .pl-table thead th.pl-th--corner {
+      text-align: left !important;
+      font-variant-numeric: normal;
+    }
+
+    .pl-table th[scope="row"] {
+      text-align: left;
+      font-weight: 600;
+      color: var(--color-gray-100);
+      max-width: 14rem;
+    }
+
+    .pl-row--sub th[scope="row"],
+    .pl-row--sub td {
+      color: var(--color-gray-400);
+      font-weight: 500;
+    }
+
+    .pl-row--sub th[scope="row"] {
+      padding-left: 1.35rem;
+    }
+
+    .pl-row--metric th[scope="row"] {
+      font-style: italic;
+      font-weight: 500;
+      color: var(--color-gray-400);
+    }
+
+    .pl-row--metric.pl-row--sub th[scope="row"] {
+      padding-left: 1.35rem;
+    }
+
+    .pl-row--strong th[scope="row"],
+    .pl-row--strong td {
+      font-weight: 800;
+      color: var(--color-white);
+      border-bottom-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .pl-row--net th[scope="row"],
+    .pl-row--net td {
+      font-weight: 800;
+      background: rgba(0, 89, 213, 0.12);
+      color: var(--color-white);
+      border-bottom: none;
+    }
+
+    .pl-num--neg {
+      color: #fecaca;
+    }
+
+    .pl-num--pos {
+      color: #a7f3d0;
+    }
+
+    .pl-callouts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 720px) {
+      .pl-callouts {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pl-callout {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 0.75rem 0.9rem;
+    }
+
+    .pl-callout__yr {
+      margin: 0 0 0.2rem;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-primary-light);
+    }
+
+    .pl-callout__line {
+      margin: 0;
+      font-size: 0.82rem;
+      line-height: 1.4;
+      color: var(--color-gray-200);
+    }
+
+    .slide-pl .slide-footer strong {
+      color: #e5e7eb;
+    }
+
+    /* —— Headcount & CoR/OPEX panels (used on Slide 6 below org grid) —— */
+    .slide-hc__bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 90% 50% at 15% 0%, rgba(94, 207, 255, 0.12) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 45% at 100% 85%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+        var(--color-dark);
+      pointer-events: none;
+    }
+
+    .ramp-panels-stack--hc {
+      --ramp-h: 154px;
+    }
+
+    .ramp-panels-stack--hc .ramp-panel__title {
+      font-size: clamp(0.82rem, 1.05vw, 0.95rem);
+    }
+
+    .ramp-seg--hc0,
+    .ramp-seg--hc1,
+    .ramp-seg--hc2,
+    .ramp-seg--hc3,
+    .ramp-seg--hc4 {
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    .ramp-seg--hc0 {
+      background: linear-gradient(180deg, #38bdf8 0%, #0ea5e9 100%);
+    }
+
+    .ramp-seg--hc1 {
+      background: linear-gradient(180deg, #2dd4bf 0%, #14b8a6 100%);
+    }
+
+    .ramp-seg--hc2 {
+      background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 100%);
+    }
+
+    .ramp-seg--hc3 {
+      background: linear-gradient(180deg, #a78bfa 0%, #7c3aed 100%);
+    }
+
+    .ramp-seg--hc4 {
+      background: linear-gradient(180deg, #fb923c 0%, #ea580c 100%);
+    }
+
+    .ramp-legend i.ramp-lg-hc0 {
+      background: linear-gradient(180deg, #38bdf8, #0ea5e9);
+    }
+
+    .ramp-legend i.ramp-lg-hc1 {
+      background: linear-gradient(180deg, #2dd4bf, #14b8a6);
+    }
+
+    .ramp-legend i.ramp-lg-hc2 {
+      background: linear-gradient(180deg, #60a5fa, #3b82f6);
+    }
+
+    .ramp-legend i.ramp-lg-hc3 {
+      background: linear-gradient(180deg, #a78bfa, #7c3aed);
+    }
+
+    .ramp-legend i.ramp-lg-hc4 {
+      background: linear-gradient(180deg, #fb923c, #ea580c);
+    }
+
+    .ramp-seg--cor {
+      width: 100%;
+      flex-shrink: 0;
+      background: linear-gradient(180deg, rgba(94, 207, 255, 0.95) 0%, rgba(0, 89, 213, 0.92) 100%);
+    }
+
+    .ramp-seg--opex {
+      width: 100%;
+      flex-shrink: 0;
+      background: linear-gradient(180deg, rgba(167, 139, 250, 0.95) 0%, rgba(109, 40, 217, 0.92) 100%);
+    }
+
+    .ramp-legend i.ramp-lg-cor {
+      background: linear-gradient(180deg, rgba(94, 207, 255, 0.95), rgba(0, 89, 213, 0.92));
+    }
+
+    .ramp-legend i.ramp-lg-opex {
+      background: linear-gradient(180deg, rgba(167, 139, 250, 0.95), rgba(109, 40, 217, 0.92));
+    }
+
+    .hc-table-wrap {
+      overflow-x: auto;
+      margin: 0;
+      padding-bottom: 0.25rem;
+      border-radius: 12px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .hc-table {
+      width: 100%;
+      min-width: 46rem;
+      border-collapse: collapse;
+      font-size: clamp(0.72rem, 0.95vw, 0.82rem);
+      color: var(--color-gray-200);
+    }
+
+    .hc-table caption {
+      caption-side: bottom;
+      text-align: left;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--color-gray-400);
+      padding: 0.5rem 0 0;
+    }
+
+    .hc-table th[scope="col"],
+    .hc-table th[scope="row"] {
+      white-space: nowrap;
+    }
+
+    .hc-table.hc-table--qtr thead tr.hc-thead-year-row th[scope="colgroup"] {
+      text-align: center;
+      font-weight: 700;
+      color: var(--color-gray-100);
+    }
+
+    .hc-table.hc-table--qtr thead tr.hc-thead-qtr-row th {
+      text-align: center;
+    }
+
+    .hc-td--total {
+      font-weight: 800;
+      color: var(--color-white);
+      background: rgba(0, 89, 213, 0.1);
+    }
+
+    .hc-tr--totals th[scope="row"] {
+      font-weight: 800;
+      color: var(--color-white);
+    }
+
+    /* Quarter grid: vertical rules after 26 Q4 and 27 Q4 (headcount tables only) */
+    .hc-table.hc-table--qtr thead tr.hc-thead-qtr-row th:nth-child(3),
+    .hc-table.hc-table--qtr tbody td:nth-child(4),
+    .hc-table.hc-table--qtr thead tr.hc-thead-qtr-row th:nth-child(7),
+    .hc-table.hc-table--qtr tbody td:nth-child(8) {
+      border-right: 1px solid rgba(255, 255, 255, 0.28);
+    }
+
+    /* Q4 columns — EoP / year-end checkpoint (headcount tables) */
+    .hc-table.hc-table--qtr thead th.hc-th--q4,
+    .hc-table.hc-table--qtr tbody td.hc-td--q4 {
+      background: rgba(94, 207, 255, 0.11);
+      box-shadow: inset 0 0 0 1px rgba(94, 207, 255, 0.2);
+    }
+
+    .hc-table.hc-table--qtr tbody td.hc-td--total.hc-td--q4 {
+      background: rgba(0, 89, 213, 0.22);
+      box-shadow: inset 0 0 0 1px rgba(94, 207, 255, 0.28);
+    }
+
+    .hc-table.hc-table--cost-yearly {
+      min-width: 26rem;
+    }
+
+    /* —— Slide 6: Org snapshots + BR/AR headcount & cost tables —— */
+    .slide-org__bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 45% at 50% 0%, rgba(0, 89, 213, 0.14) 0%, transparent 52%),
+        radial-gradient(ellipse 55% 40% at 0% 100%, rgba(94, 207, 255, 0.08) 0%, transparent 48%),
+        var(--color-dark);
+      pointer-events: none;
+    }
+
+    /* Org grid: same HC series as BR/AR tables on this slide —— */
+    .org-s7-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(0.65rem, 1.5vw, 1.15rem);
+      margin: 0.85rem 0 0.5rem;
+      align-items: stretch;
+    }
+
+    @media (max-width: 1180px) {
+      .org-s7-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .org-s7-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .org-s7-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      padding: clamp(0.65rem, 1.1vw, 0.85rem);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .org-s7-card__title {
+      margin: 0 0 0.5rem;
+      font-size: clamp(0.8rem, 1vw, 0.875rem);
+      font-weight: 600;
+      color: #0f172a;
+      text-align: center;
+      letter-spacing: -0.01em;
+    }
+
+    .org-s7-card__investment {
+      margin: 0.55rem 0 0;
+      padding: 0.5rem 0.35rem 0;
+      border-top: 1px solid #e2e8f0;
+      font-size: clamp(0.8rem, 1.35vw, 0.98rem);
+      line-height: 1.4;
+      color: #475569;
+      text-align: center;
+    }
+
+    .org-s7-card__investment__val {
+      color: #0f172a;
+      font-weight: 800;
+      font-size: clamp(0.95rem, 1.65vw, 1.2rem);
+      white-space: nowrap;
+    }
+
+    .org-s7-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+      flex: 1;
+      min-height: 280px;
+    }
+
+    .org-s7-pair--latam {
+      grid-template-columns: 1fr;
+      max-width: 22rem;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
+    @media (max-width: 520px) {
+      .org-s7-pair {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .org-s7-geo {
+      border: 1px solid #e2e8f0;
+      border-radius: 0.375rem;
+      padding: 0.45rem 0.4rem 0.55rem;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      min-height: 0;
+    }
+
+    .org-s7-geo__label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      text-align: center;
+      margin-bottom: 0.35rem;
+      color: #475569;
+    }
+
+    .org-s7-geo--br .org-s7-geo__label {
+      color: #047857;
+    }
+
+    .org-s7-geo--ar .org-s7-geo__label {
+      color: #1d4ed8;
+    }
+
+    .org-s7-geo--latam .org-s7-geo__label {
+      color: #0f766e;
+    }
+
+    .org-s7-geo__label--country {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      margin-bottom: 0.35rem;
+    }
+
+    .org-s7-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      flex: 1;
+    }
+
+    .org-s7-ae-stack,
+    .org-s7-am-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      width: 100%;
+    }
+
+    /* 27 Q4: M5 → AE column | AM column (sample org format) */
+    .org-s7-split-27 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      width: 100%;
+      align-items: start;
+    }
+
+    .org-s7-split-27__col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .org-s7-split-27__spacer {
+      min-height: 1.5rem;
+      width: 100%;
+    }
+
+    /* 28 Q4: M5 → AE column | (Mgr L4 + AM stack) */
+    .org-s7-split-28 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      width: 100%;
+      align-items: start;
+    }
+
+    .org-s7-split-28__col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .org-s7-split-28__branch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .org-s7-split-28__spacer {
+      min-height: 1.5rem;
+      width: 100%;
+    }
+
+    .org-s7-stack-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      width: 100%;
+    }
+
+    .org-s7-vline {
+      width: 0;
+      flex: 0 0 10px;
+      border-left: 1.5px solid #94a3b8;
+      margin: 0 auto;
+    }
+
+    .org-s7-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.35rem;
+      width: 100%;
+    }
+
+    /* 28 Q4: open HC slot above AE column (dashed placeholder) */
+    .org-s7-ae-slot-placeholder {
+      width: 104px;
+      min-height: 66px;
+      margin: 0 auto 0.35rem;
+      border: 2px dashed #3b82f6;
+      border-radius: 0.375rem;
+      background: #eff6ff;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .org-s7-ae-slot-placeholder__mark {
+      color: #3b82f6;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+
+    .org-s7-node {
+      width: 104px;
+      min-height: 66px;
+      padding: 0.32rem 0.35rem 0.38rem;
+      border-radius: 0.375rem;
+      border: 1px solid #e2e8f0;
+      background: #fff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      font-size: 0.6rem;
+      line-height: 1.2;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .org-s7-node--m5 {
+      background: #2563eb;
+      border-color: #1d4ed8;
+      color: #f8fafc;
+    }
+
+    .org-s7-node--m5 .org-s7-node__role,
+    .org-s7-node--m5 .org-s7-node__sub,
+    .org-s7-node--m5 .org-s7-node__join {
+      color: #f1f5f9;
+    }
+
+    .org-s7-node--m5 .org-s7-node__join {
+      color: #bfdbfe;
+    }
+
+    .org-s7-node--ghost {
+      border-style: dashed;
+      background: #f1f5f9;
+      color: #64748b;
+    }
+
+    .org-s7-node--ae {
+      background: linear-gradient(180deg, #ecfdf5, #d1fae5);
+      border-color: #6ee7b7;
+    }
+
+    .org-s7-node--ae .org-s7-node__role {
+      color: #065f46;
+    }
+
+    .org-s7-node--ae .org-s7-node__join {
+      color: #047857;
+    }
+
+    .org-s7-node--am {
+      background: linear-gradient(180deg, #faf5ff, #f3e8ff);
+      border-color: #d8b4fe;
+    }
+
+    .org-s7-node--am .org-s7-node__role {
+      color: #6b21a8;
+    }
+
+    .org-s7-node--am .org-s7-node__join {
+      color: #7c3aed;
+    }
+
+    .org-s7-node--m4 {
+      background: #e0f2fe;
+      border-color: #7dd3fc;
+    }
+
+    .org-s7-node--m4 .org-s7-node__role {
+      color: #0369a1;
+    }
+
+    .org-s7-node--m4 .org-s7-node__sub {
+      color: #0c4a6e;
+    }
+
+    .org-s7-node--m4 .org-s7-node__join {
+      color: #0284c7;
+    }
+
+    .org-s7-node__flag {
+      display: inline-block;
+      font-size: 1rem;
+      line-height: 1;
+      margin-bottom: 0.12rem;
+      padding: 0;
+      border: none;
+      background: transparent;
+      border-radius: 0.15rem;
+      font-style: normal;
+    }
+
+    .org-s7-node__flag--br,
+    .org-s7-node__flag--ar {
+      background: transparent;
+    }
+
+    .org-s7-node__role {
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .org-s7-node__sub {
+      margin-top: 0.06rem;
+      font-size: 0.5rem;
+      font-weight: 500;
+      color: #64748b;
+    }
+
+    .org-s7-node__join {
+      margin-top: 0.12rem;
+      font-size: 0.5rem;
+      font-weight: 600;
+      color: #2563eb;
+    }
+
+    .org-s7-node--m5 .org-s7-node__join {
+      color: #bfdbfe;
+    }
+
+    .org-s7-node__newhire {
+      display: block;
+      margin-top: 0.08rem;
+      font-size: 0.46rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #b45309;
+    }
+
+    .org-s7-node--m5 .org-s7-node__newhire {
+      color: #fde68a;
+    }
+
+    .org-s7-node--ae .org-s7-node__newhire,
+    .org-s7-node--am .org-s7-node__newhire {
+      color: #9a3412;
+    }
+
+    .org-s7-node--m4 .org-s7-node__newhire {
+      color: #0369a1;
+    }
+
+    .org-s7-legend {
+      margin-top: 0.35rem;
+      font-size: 0.58rem;
+      color: #94a3b8;
+      text-align: center;
+      line-height: 1.35;
+    }
+
+    /* —— Slide 0: Executive summary —— */
+    .slide-exec h1.slide-kicker {
+      font-size: clamp(0.78rem, 1.1vw, 0.88rem);
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-primary-light);
+      margin: 0 0 1.5rem;
+      width: 100%;
+      max-width: none;
+      box-sizing: border-box;
+      padding: 1rem 1.25rem 1.1rem;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background:
+        linear-gradient(165deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 45%, transparent 100%);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .slide-exec__bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 100% 70% at 50% -10%, rgba(0, 89, 213, 0.18) 0%, transparent 42%),
+        radial-gradient(ellipse 90% 55% at 12% 18%, rgba(0, 89, 213, 0.16) 0%, transparent 45%),
+        radial-gradient(ellipse 80% 50% at 92% 82%, rgba(34, 197, 94, 0.12) 0%, transparent 48%),
+        radial-gradient(ellipse 60% 40% at 70% 40%, rgba(94, 207, 255, 0.06) 0%, transparent 50%),
+        var(--color-dark);
+      pointer-events: none;
+    }
+
+    .exec-pillars {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(0.85rem, 2vw, 1.05rem);
+      margin: 0;
+      width: 100%;
+      max-width: none;
+      padding: 0;
+      list-style: none;
+      box-sizing: border-box;
+    }
+
+    .exec-pillars > li.exec-pillar {
+      list-style: none;
+    }
+
+    .exec-pillar {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem 1.15rem;
+      align-items: start;
+      min-width: 0;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      box-sizing: border-box;
+      padding: 1.15rem 1.35rem 1.2rem calc(1.1rem + 5px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      background: linear-gradient(155deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.025) 55%, rgba(0, 0, 0, 0.12) 100%);
+      box-shadow:
+        0 4px 28px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(12px);
+      overflow: hidden;
+    }
+
+    .exec-pillar__main {
+      min-width: 0;
+    }
+
+    .exec-pillar__icon {
+      flex-shrink: 0;
+      width: 3.1rem;
+      height: 3.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
+      color: var(--color-primary-light);
+    }
+
+    .exec-pillar__icon svg {
+      width: 1.75rem;
+      height: 1.75rem;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .exec-pillar:nth-child(1) .exec-pillar__icon {
+      color: #5ecfff;
+    }
+
+    .exec-pillar:nth-child(2) .exec-pillar__icon {
+      color: #93c5fd;
+    }
+
+    .exec-pillar:nth-child(3) .exec-pillar__icon {
+      color: #4ade80;
+    }
+
+    .exec-pillar:nth-child(4) .exec-pillar__icon {
+      color: #c4b5fd;
+    }
+
+    .exec-pillar:nth-child(5) .exec-pillar__icon {
+      color: #fcd34d;
+    }
+
+    .exec-pillar:nth-child(6) .exec-pillar__icon {
+      color: #7dd3fc;
+    }
+
+    .exec-pillar::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      border-radius: 16px 0 0 16px;
+      background: linear-gradient(180deg, var(--color-primary-light), var(--color-primary));
+    }
+
+    .exec-pillar:nth-child(1)::before {
+      background: linear-gradient(180deg, #5ecfff, var(--color-primary));
+    }
+
+    .exec-pillar:nth-child(2)::before {
+      background: linear-gradient(180deg, var(--chart-ar-a), var(--chart-ar-b));
+    }
+
+    .exec-pillar:nth-child(3)::before {
+      background: linear-gradient(180deg, var(--chart-br-a), var(--chart-br-b));
+    }
+
+    .exec-pillar:nth-child(4)::before {
+      background: linear-gradient(180deg, #a78bfa, #6d28d9);
+    }
+
+    .exec-pillar:nth-child(5)::before {
+      background: linear-gradient(180deg, #fcd34d, #b45309);
+    }
+
+    .exec-pillar:nth-child(6)::before {
+      background: linear-gradient(180deg, var(--color-primary-light), #0044a8);
+    }
+
+    .exec-pillar__title {
+      margin: 0 0 0.5rem;
+      font-size: clamp(0.92rem, 1.35vw, 1.08rem);
+      font-weight: 800;
+      line-height: 1.25;
+      color: var(--color-white);
+      letter-spacing: 0.02em;
+    }
+
+    .exec-pillar__text {
+      margin: 0;
+      padding-left: 0;
+      font-size: calc(clamp(0.84rem, 1.08vw, 0.95rem) - 0.5pt);
+      line-height: 1.52;
+      color: var(--color-gray-200);
+    }
+
+    .exec-pillar__text strong {
+      color: #f0f4fa;
+      font-weight: 700;
+    }
+
+    @media (max-width: 520px) {
+      .exec-pillar {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        max-width: 100%;
+      }
+
+      .exec-pillar__icon {
+        width: 2.75rem;
+        height: 2.75rem;
+      }
+
+      .exec-pillar__text {
+        padding-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="slide-section slide-exec" id="slide-0">
+    <div class="slide-exec__bg" aria-hidden="true"></div>
+    <div class="slide-inner">
+      <nav class="slide-nav" aria-label="Presentation slides">
+        <a href="#slide-0" data-deck-nav>Slide 0 · Executive summary</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-1" data-deck-nav>Slide 1 · TAM size</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-2" data-deck-nav>Slide 2 · GMV &amp; Core coverage</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-3" data-deck-nav>Slide 3 · Sales-Led economics</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-4" data-deck-nav>Slide 4 · QoQ ramp</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-5" data-deck-nav>Slide 5 · P&amp;L</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-6" data-deck-nav>Slide 6 · Org &amp; HC</a>
+      </nav>
+
+      <h1 class="slide-kicker">PoS GTM · Sales investment — Executive summary</h1>
+
+      <ol class="exec-pillars" aria-label="Executive summary — six pillars">
+        <li class="exec-pillar">
+          <div class="exec-pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg>
+          </div>
+          <div class="exec-pillar__main">
+            <p class="exec-pillar__title">Total Addressable Market</p>
+            <p class="exec-pillar__text">
+              The modeled market is <strong>enormous</strong>: on the order of <strong>~94k stores</strong>, <strong>~US$2.54B/yr</strong> offline GMV, and <strong>~US$120M/yr</strong> revenue potential—<strong>large enough to warrant its own GTM thesis</strong> (BR + AR + MX in this export).
+            </p>
+          </div>
+        </li>
+        <li class="exec-pillar">
+          <div class="exec-pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="16" rx="1.5" /><rect x="14" y="4" width="7" height="7" rx="1.5" /><rect x="14" y="13" width="7" height="7" rx="1.5" /></svg>
+          </div>
+          <div class="exec-pillar__main">
+            <p class="exec-pillar__title">Segments &amp; motions</p>
+            <p class="exec-pillar__text">
+              That opportunity <strong>spreads across VSB/SMB, Upper SMB (Escala-like), and UpMarket (Next-like)</strong>—so <strong>one channel will not carry the whole file</strong>; we need a <strong>deliberate PLG + SLG mix</strong> tuned by segment.
+            </p>
+          </div>
+        </li>
+        <li class="exec-pillar">
+          <div class="exec-pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.5" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="9" /></svg>
+          </div>
+          <div class="exec-pillar__main">
+            <p class="exec-pillar__title">Strategic whitespace</p>
+            <p class="exec-pillar__text">
+              <strong>High PoS GMV</strong> is the <strong>real whitespace</strong>: only <strong>~10%</strong> of the pool <strong>naturally overlaps</strong> Core coverage today (<strong>Escala + Next/Evolución</strong>)—the <strong>rest</strong> requires <strong>dedicated PoS capacity</strong>, not borrowed account lists.
+            </p>
+          </div>
+        </li>
+        <li class="exec-pillar">
+          <div class="exec-pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M23 6l-9.5 9.5-5-5L1 18" /><path d="M17 6h6v6" /></svg>
+          </div>
+          <div class="exec-pillar__main">
+            <p class="exec-pillar__title">Economics</p>
+            <p class="exec-pillar__text">
+              The model <strong>justifies a sales-led bet</strong> when we sell <strong>the full stack (PoS + offline)</strong>: <strong>total payback</strong> sits near <strong>2-3 months</strong> at modeled adoption—versus <strong>PoS-only</strong> at <strong>many months</strong>—so <strong>bundle discipline is the lever</strong>.
+            </p>
+          </div>
+        </li>
+        <li class="exec-pillar">
+          <div class="exec-pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16" /><path d="M8 19v-4M12 19v-9M16 19v-6M20 19v-2" /></svg>
+          </div>
+          <div class="exec-pillar__main">
+            <p class="exec-pillar__title">P&amp;L path</p>
+            <p class="exec-pillar__text">
+              Revenue scale drowns the early investment. Gross revenue rises from <strong>~US$36k (2026)</strong> to <strong>~US$8.8M (2028)</strong>; <strong>EBIT impact</strong> is negative in <strong>2026</strong>, crosses to <strong>~US$152k in 2027</strong>, and reaches <strong>~US$1.35M in 2028</strong>.
+            </p>
+          </div>
+        </li>
+        <li class="exec-pillar">
+          <div class="exec-pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+          </div>
+          <div class="exec-pillar__main">
+            <p class="exec-pillar__title">Commercial org</p>
+            <p class="exec-pillar__text">
+              <strong>Launch with a Head</strong> to build <strong>a foundation</strong>, plus <strong>3 AEs in 2026</strong> (investment of <strong>~US$86k</strong>). <strong>Add Argentina leadership</strong> and <strong>scale AEs and AMs</strong> with volume—<strong>~20 FTE by EoY 2028</strong>.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="slide-section slide-opportunity" id="slide-1">
+    <div class="slide-opportunity__bg" aria-hidden="true"></div>
+    <div class="slide-inner">
+      <nav class="slide-nav" aria-label="Presentation slides">
+        <a href="#slide-0" data-deck-nav>Slide 0 · Executive summary</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-1" data-deck-nav>Slide 1 · TAM size</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-2" data-deck-nav>Slide 2 · GMV &amp; Core coverage</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-3" data-deck-nav>Slide 3 · Sales-Led economics</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-4" data-deck-nav>Slide 4 · QoQ ramp</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-5" data-deck-nav>Slide 5 · P&amp;L</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-6" data-deck-nav>Slide 6 · Org &amp; HC</a>
+      </nav>
+      <p class="slide-kicker">PoS GTM · Commercial TAM — Slide 1</p>
+      <h1 class="slide-title">The TAM is enormous — Core only lights up a sliver of GMV naturally</h1>
+      <p class="slide-subtitle">Modeled market size: stores, offline GMV, and revenue — by country
+        (<strong>BR</strong> green · <strong>AR</strong> blue · <strong>MX</strong> red) and by offline GMV band (violet · amber · gray).</p>
+
+      <aside class="insights-card card-glass" aria-label="Key insights">
+        <h2 class="insights-title">Key insights</h2>
+        <ul class="insights-list">
+          <li>
+            <strong>Geography:</strong> Brazil leads on store count; Argentina leads on GMV and revenue in this
+            model — <strong>higher dollars per store in AR</strong>.
+          </li>
+          <li>
+            <strong>Mexico:</strong> Small share of stores and revenue today — <strong>optionality / a later
+            phase</strong> unless strategy shifts.
+          </li>
+          <li>
+            <strong>Store-size mix:</strong> Most merchants sit in the <strong>&lt; US$5k</strong> offline-GMV band
+            (bulk of doors); <strong>&gt; US$20k</strong> is a thin slice of count but a <strong>large GMV block</strong>
+            — tail concentration.
+          </li>
+        </ul>
+      </aside>
+
+      <div class="layout-two-col">
+        <article class="card-glass layout-two-col__left">
+          <h2 class="panel-title">By country</h2>
+          <div class="metric-stack" id="panel-country"></div>
+          <div class="chart-legend-inline" id="legend-country" aria-hidden="true"></div>
+        </article>
+
+        <article class="card-glass layout-two-col__right">
+          <h2 class="panel-title">By store size (est. offline GMV)</h2>
+          <div class="metric-stack" id="panel-size"></div>
+          <div class="chart-legend-inline" id="legend-size" aria-hidden="true"></div>
+        </article>
+      </div>
+
+      <footer class="slide-footer">
+        <strong>Source:</strong>
+        <a href="https://docs.google.com/spreadsheets/d/1hQHIqrBOv7PniKhYeKRqkZ6EzA_OpdrGCXzrj6EUaMg/edit?gid=1736282877#gid=1736282877" target="_blank" rel="noopener noreferrer">PoS GMV Model Output</a>
+        (Google Sheets) ·
+        <a href="https://docs.google.com/document/d/1tCjjTop-ydE8t7miXGbgF29AG82tGzEaT4anJ68Ubq8/edit?tab=t.0#heading=h.vhomjbpbswrr" target="_blank" rel="noopener noreferrer">Supporting documentation</a>
+        (Google Docs).
+        <p class="slide-footnote" role="note">
+          <strong>Footnote:</strong> Estimated adoption of <strong>Nuvem Pago</strong> is <strong>50%</strong>.
+        </p>
+      </footer>
+    </div>
+  </section>
+
+  <section class="slide-section slide-gmv" id="slide-2">
+    <div class="slide-hero__bg" aria-hidden="true"></div>
+    <div class="slide-inner">
+      <nav class="slide-nav" aria-label="Presentation slides">
+        <a href="#slide-0" data-deck-nav>Slide 0 · Executive summary</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-1" data-deck-nav>Slide 1 · TAM size</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-2" data-deck-nav>Slide 2 · GMV &amp; Core coverage</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-3" data-deck-nav>Slide 3 · Sales-Led economics</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-4" data-deck-nav>Slide 4 · QoQ ramp</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-5" data-deck-nav>Slide 5 · P&amp;L</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-6" data-deck-nav>Slide 6 · Org &amp; HC</a>
+      </nav>
+
+      <p class="slide-kicker">PoS GTM · Sales investment — Slide 2</p>
+      <h1 class="slide-title">High PoS GMV with SMB Core is the real whitespace — not a corner case</h1>
+      <p class="slide-subtitle">Share of total GMV: PoS offline GMV band (rows) × Core GMV band (columns); model export corner total <strong>~98.3%</strong> (rounding).</p>
+
+      <aside class="card-glass mb-gmv" aria-label="Strategic insights">
+        <h2 class="insights-title">Insights</h2>
+        <ul class="insights-list">
+          <li>
+            <strong>Dedicated PoS (~38.9% GMV).</strong> <strong>Largest</strong> wedge:
+            <strong>high PoS</strong> with <strong>Core still &lt; US$5k</strong> (cyan cells).
+            <strong>Implication:</strong> <strong>New PoS team</strong>—<strong>Core</strong> cannot clear this
+            <strong>at scale</strong> without dedicated capacity.
+          </li>
+          <li>
+            <strong>AM harvest (~9.2%).</strong> <strong>High PoS × Next-like Core</strong>
+            (<strong>2.5%</strong> + <strong>6.7%</strong>).
+            <strong>Implication:</strong> <strong>Cross-sell</strong> through <strong>Core AMs</strong> on
+            <strong>owned</strong> accounts—<strong>low incremental</strong> org cost.
+          </li>
+          <li>
+            <strong>Bundle economics (~11.6%).</strong> <strong>High PoS × Escala-like Core</strong>
+            (<strong>3.8%</strong> + <strong>7.8%</strong>); <strong>Escala → Next</strong> with
+            <strong>Core</strong> + <strong>Nuvem Pago</strong> on <strong>price / TCO</strong>.
+            <strong>Implication:</strong> sell a <strong>package</strong>, not PoS <strong>in isolation</strong>.
+          </li>
+          <li>
+            <strong>PLG base (~38.5%).</strong> Full <strong>PoS &lt; US$5k</strong> row.
+            <strong>Implication:</strong> <strong>PLG</strong>; don’t deploy <strong>commercial</strong> as a
+            <strong>blanket</strong> motion here.
+          </li>
+        </ul>
+      </aside>
+
+      <div class="callouts">
+        <div class="callout callout--cyan">
+          <p class="callout__val">38.9%</p>
+          <p class="callout__label"><strong>High PoS</strong>, Core <strong>&lt; US$5k</strong> — <strong>new PoS team</strong>.</p>
+        </div>
+        <div class="callout callout--violet-plg">
+          <p class="callout__val">38.5%</p>
+          <p class="callout__label"><strong>PoS &lt; US$5k</strong> row — <strong>PLG</strong>. Don’t spend <strong>commercial</strong> here.</p>
+        </div>
+        <div class="callout callout--mint">
+          <p class="callout__val">11.6%</p>
+          <p class="callout__label"><strong>Bundle + upsell</strong> — <strong>Core</strong> + <strong>Nuvem Pago</strong> on <strong>price / TCO</strong>.</p>
+        </div>
+        <div class="callout callout--green">
+          <p class="callout__val">9.2%</p>
+          <p class="callout__label"><strong>High PoS</strong> + <strong>Next-like Core</strong> — <strong>Core AM</strong> cross-sell.</p>
+        </div>
+      </div>
+
+      <p class="matrix-caption">GMV mix (%, PoS GMV Model Output)</p>
+      <div class="matrix-scroll">
+        <div class="matrix" role="img" aria-label="PoS GMV band by Core GMV band. Cells show percent of total GMV.">
+          <div class="matrix-corner">
+            <span><strong>PoS</strong> band (rows) × <strong>Core</strong> band (cols). All values % of total GMV.</span>
+          </div>
+          <div class="matrix-hdr">Core &lt; US$5k<br /><span style="font-weight:500;opacity:.9">(SMB)</span></div>
+          <div class="matrix-hdr">Core US$5k–20k<br /><span style="font-weight:500;opacity:.9">(Escala-like)</span></div>
+          <div class="matrix-hdr">Core &gt; US$20k<br /><span style="font-weight:500;opacity:.9">(Next-like)</span></div>
+          <div class="matrix-hdr">Total</div>
+
+          <div class="matrix-rowlabel">PoS &lt; US$5k (SMB)</div>
+          <div class="matrix-cell matrix-cell--smb-anchor">33.9%</div>
+          <div class="matrix-cell matrix-cell--smb-anchor">3.3%</div>
+          <div class="matrix-cell matrix-cell--smb-anchor">1.2%</div>
+          <div class="matrix-cell matrix-cell--total">38.5%</div>
+
+          <div class="matrix-rowlabel">PoS US$5k–20k (Escala-like)</div>
+          <div class="matrix-cell matrix-cell--gap">19.2%</div>
+          <div class="matrix-cell matrix-cell--mint">3.8%</div>
+          <div class="matrix-cell matrix-cell--core">2.5%</div>
+          <div class="matrix-cell matrix-cell--total">25.6%</div>
+
+          <div class="matrix-rowlabel">PoS &gt; US$20k (Next-like)</div>
+          <div class="matrix-cell matrix-cell--gap">19.7%</div>
+          <div class="matrix-cell matrix-cell--mint">7.8%</div>
+          <div class="matrix-cell matrix-cell--core">6.7%</div>
+          <div class="matrix-cell matrix-cell--total">34.2%</div>
+
+          <div class="matrix-rowlabel">Total</div>
+          <div class="matrix-cell matrix-cell--total">72.9%</div>
+          <div class="matrix-cell matrix-cell--total">14.9%</div>
+          <div class="matrix-cell matrix-cell--total">10.4%</div>
+          <div class="matrix-cell matrix-cell--total">98.3%</div>
+        </div>
+      </div>
+
+      <div class="matrix-legend">
+        <span><span class="lg-swatch lg-swatch--core" aria-hidden="true"></span> Green — SLG: High PoS GMV, synergy with Core</span>
+        <span><span class="lg-swatch lg-swatch--gap" aria-hidden="true"></span> Cyan — SLG: High PoS GMV, no Core coverage</span>
+        <span><span class="lg-swatch lg-swatch--smb-anchor" aria-hidden="true"></span> Violet — PoS &lt; US$5k (SMB) row × all Core bands</span>
+        <span><span class="lg-swatch lg-swatch--mint" aria-hidden="true"></span> Mint — high PoS × Escala-like Core (same as 11.6% callout)</span>
+      </div>
+
+      <footer class="slide-footer">
+        <strong>Source:</strong>
+        <a href="https://docs.google.com/spreadsheets/d/1hQHIqrBOv7PniKhYeKRqkZ6EzA_OpdrGCXzrj6EUaMg/edit?gid=1736282877#gid=1736282877" target="_blank" rel="noopener noreferrer">PoS GMV Model Output</a>
+        (Google Sheets) ·
+        <a href="https://docs.google.com/document/d/1tCjjTop-ydE8t7miXGbgF29AG82tGzEaT4anJ68Ubq8/edit?tab=t.0#heading=h.vhomjbpbswrr" target="_blank" rel="noopener noreferrer">Supporting documentation</a>
+        (Google Docs) · PoS GMV share × Core GMV share matrix ·
+        <strong>Unit:</strong> percent of total GMV ·
+        <strong>Note:</strong> Rounding; row and column totals per export (corner total <strong>98.3%</strong>).
+        <p class="slide-footnote" role="note">
+          <strong>Footnote:</strong> Estimated adoption of <strong>Nuvem Pago</strong> is <strong>50%</strong>.
+        </p>
+      </footer>
+    </div>
+  </section>
+
+  <section class="slide-section slide-econ" id="slide-3">
+    <div class="slide-econ__bg" aria-hidden="true"></div>
+    <div class="slide-inner">
+      <nav class="slide-nav" aria-label="Presentation slides">
+        <a href="#slide-0" data-deck-nav>Slide 0 · Executive summary</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-1" data-deck-nav>Slide 1 · TAM size</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-2" data-deck-nav>Slide 2 · GMV &amp; Core coverage</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-3" data-deck-nav>Slide 3 · Sales-Led economics</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-4" data-deck-nav>Slide 4 · QoQ ramp</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-5" data-deck-nav>Slide 5 · P&amp;L</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-6" data-deck-nav>Slide 6 · Org &amp; HC</a>
+      </nav>
+
+      <p class="slide-kicker">PoS GTM · Sales investment — Slide 3</p>
+      <h1 class="slide-title">The economics justify a sales-led bet — if we sell the stack, not PoS alone</h1>
+      <p class="slide-subtitle">Modeled unit economics for Brazil and Argentina: Upper SMB vs UpMarket, monthly USD per AE.</p>
+
+      <aside class="insights-card card-glass" aria-label="Key insights">
+        <h2 class="insights-title">Key insights</h2>
+        <ul class="insights-list">
+          <li>
+            <strong>Speed to value:</strong> With <strong>PoS + offline payments</strong> at modeled adoption, total payback sits near
+            <strong>two to three months</strong> across these cuts — enough room to fund a <strong>direct sales</strong> motion if execution holds.
+          </li>
+          <li>
+            <strong>Strategic implication:</strong> <strong>PoS-only</strong> payback sits near <strong>~8 months</strong> in this model
+            versus a few months bundled — the executive narrative is <strong>full-stack</strong> penetration, not PoS as a standalone SKU.
+          </li>
+          <li>
+            <strong>Segment &amp; geography:</strong> <strong>UpMarket</strong> delivers fewer deals but <strong>materially higher</strong> monthly revenue and margin;
+            <strong>Argentina UpMarket</strong> shows the <strong>tightest</strong> payback in this export.
+          </li>
+          <li>
+            <strong>Footprint:</strong> <strong>Mexico</strong> is out of scope here — roll the same frame once <strong>local payment economics and FX</strong> are locked.
+          </li>
+        </ul>
+      </aside>
+
+      <div class="econ-regions">
+        <article class="econ-region econ-region--br" aria-labelledby="econ-br-heading">
+          <div class="econ-region__head">
+            <h2 class="econ-region__name" id="econ-br-heading">Brazil</h2>
+            <p class="econ-region__pay">Offline payments · <strong>Stone</strong></p>
+          </div>
+          <div class="econ-region-fees" aria-label="Brazil PoS SaaS parameters (model)">
+            <p class="econ-kv-heading">PoS — SaaS assumptions</p>
+            <ul class="econ-kv">
+              <li><span>PoS take-rate (% of GMV)</span><span>0.25%</span></li>
+              <li><span>PoS subscription (USD/mo)</span><span>13.1</span></li>
+              <li><span>Gross margin PoS</span><span>75.0%</span></li>
+              <li><span>Expected ARPU PoS · Upper SMB</span><span>38 (USD/mo)</span></li>
+              <li><span>Expected ARPU PoS · UpMarket</span><span>105 (USD/mo)</span></li>
+            </ul>
+          </div>
+          <div class="econ-region-fees" aria-label="Brazil offline payment parameters (model)">
+            <p class="econ-kv-heading">Offline payments — Stone</p>
+            <ul class="econ-kv">
+              <li><span>Gateway fee (% of GMV)</span><span>5.88%</span></li>
+              <li><span>NOTR (%)</span><span>0.8%</span></li>
+              <li><span>Gross margin · offline payment</span><span>12.9%</span></li>
+            </ul>
+          </div>
+          <div class="econ-pair">
+            <div class="econ-seg">
+              <p class="econ-seg__title">Upper SMB</p>
+              <p class="econ-seg__band">GMV band US$5k–20k /mo<br />
+              Avg GMV <strong>US$9,963</strong> /mo</p>
+              <div class="econ-payback">
+                <span class="econ-payback__n">2.9</span>
+                <span class="econ-payback__u">Months · payback (total)</span>
+              </div>
+              <p class="econ-payback-pos">Payback PoS only · <strong>7.6</strong> mo</p>
+              <p class="econ-kv-heading">Sales-Led economics — 1 AE (monthly)</p>
+              <ul class="econ-kv">
+                <li><span>Deals / month</span><span>15</span></li>
+                <li><span>Revenue PoS</span><span>570.8</span></li>
+                <li><span>Gross margin PoS ($)</span><span>428.1</span></li>
+                <li><span>Adoption offline pay</span><span>50%</span></li>
+                <li><span>Revenue total</span><span>4,964.4</span></li>
+                <li><span>Gross margin total</span><span>1,138.6</span></li>
+                <li><span>Commercial cost</span><span>3,248.0</span></li>
+              </ul>
+            </div>
+            <div class="econ-seg econ-seg--up">
+              <p class="econ-seg__title">UpMarket</p>
+              <p class="econ-seg__band">GMV band US$20k–200k /mo<br />
+              Avg GMV <strong>US$36,917</strong> /mo</p>
+              <div class="econ-payback">
+                <span class="econ-payback__n">2.8</span>
+                <span class="econ-payback__u">Months · payback (total)</span>
+              </div>
+              <p class="econ-payback-pos">Payback PoS only · <strong>8.8</strong> mo</p>
+              <p class="econ-kv-heading">Sales-Led economics — 1 AE (monthly)</p>
+              <ul class="econ-kv">
+                <li><span>Deals / month</span><span>7</span></li>
+                <li><span>Revenue PoS</span><span>738.0</span></li>
+                <li><span>Gross margin PoS ($)</span><span>553.5</span></li>
+                <li><span>Adoption offline pay</span><span>50%</span></li>
+                <li><span>Revenue total</span><span>8,335.6</span></li>
+                <li><span>Gross margin total</span><span>1,720.0</span></li>
+                <li><span>Commercial cost</span><span>4,872.0</span></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="econ-region econ-region--ar" aria-labelledby="econ-ar-heading">
+          <div class="econ-region__head">
+            <h2 class="econ-region__name" id="econ-ar-heading">Argentina</h2>
+            <p class="econ-region__pay">Offline payments · <strong>dLocal</strong></p>
+          </div>
+          <div class="econ-region-fees" aria-label="Argentina PoS SaaS parameters (model)">
+            <p class="econ-kv-heading">PoS — SaaS assumptions</p>
+            <ul class="econ-kv">
+              <li><span>PoS take-rate (% of GMV)</span><span>0.25%</span></li>
+              <li><span>PoS subscription (USD/mo)</span><span>22.0</span></li>
+              <li><span>Gross margin PoS</span><span>75.0%</span></li>
+              <li><span>Expected ARPU PoS · Upper SMB</span><span>42 (USD/mo)</span></li>
+              <li><span>Expected ARPU PoS · UpMarket</span><span>125 (USD/mo)</span></li>
+            </ul>
+          </div>
+          <div class="econ-region-fees" aria-label="Argentina offline payment parameters (model)">
+            <p class="econ-kv-heading">Offline payments — dLocal</p>
+            <ul class="econ-kv">
+              <li><span>Gateway fee (% of GMV)</span><span>9.84%</span></li>
+              <li><span>NOTR (%)</span><span>1.33%</span></li>
+              <li><span>Gross margin · offline payment</span><span>13.5%</span></li>
+            </ul>
+          </div>
+          <div class="econ-pair">
+            <div class="econ-seg">
+              <p class="econ-seg__title">Upper SMB</p>
+              <p class="econ-seg__band">GMV band US$5k–20k /mo<br />
+              Avg GMV <strong>US$7,807</strong> /mo</p>
+              <div class="econ-payback">
+                <span class="econ-payback__n">2.7</span>
+                <span class="econ-payback__u">Months · payback (total)</span>
+              </div>
+              <p class="econ-payback-pos">Payback PoS only · <strong>8.2</strong> mo</p>
+              <p class="econ-kv-heading">Sales-Led economics — 1 AE (monthly)</p>
+              <ul class="econ-kv">
+                <li><span>Deals / month</span><span>15</span></li>
+                <li><span>Revenue PoS</span><span>622.5</span></li>
+                <li><span>Gross margin PoS ($)</span><span>466.9</span></li>
+                <li><span>Adoption offline pay</span><span>50%</span></li>
+                <li><span>Revenue total</span><span>6,386.0</span></li>
+                <li><span>Gross margin total</span><span>1,398.8</span></li>
+                <li><span>Commercial cost</span><span>3,815.8</span></li>
+              </ul>
+            </div>
+            <div class="econ-seg econ-seg--up">
+              <p class="econ-seg__title">UpMarket</p>
+              <p class="econ-seg__band">GMV band US$20k–200k /mo<br />
+              Avg GMV <strong>US$41,282</strong> /mo</p>
+              <div class="econ-payback">
+                <span class="econ-payback__n">2.1</span>
+                <span class="econ-payback__u">Months · payback (total)</span>
+              </div>
+              <p class="econ-payback-pos">Payback PoS only · <strong>8.7</strong> mo</p>
+              <p class="econ-kv-heading">Sales-Led economics — 1 AE (monthly)</p>
+              <ul class="econ-kv">
+                <li><span>Deals / month</span><span>7</span></li>
+                <li><span>Revenue PoS</span><span>876.3</span></li>
+                <li><span>Gross margin PoS ($)</span><span>657.2</span></li>
+                <li><span>Adoption offline pay</span><span>50%</span></li>
+                <li><span>Revenue total</span><span>15,098.7</span></li>
+                <li><span>Gross margin total</span><span>2,791.9</span></li>
+                <li><span>Commercial cost</span><span>5,723.7</span></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <footer class="slide-footer">
+        <strong>Source:</strong>
+        <a href="https://docs.google.com/spreadsheets/d/1_eeaT1osY1LZ5Tg3QAiBPUmrEzLIiQfcXMhG4TujiIM" target="_blank" rel="noopener noreferrer">PoS GTM Sales Invesment</a>
+        (Google Sheets) ·
+        <strong>Commercial cost:</strong> <strong>25% commission</strong> on <strong>monthly revenue total</strong> ·
+        <strong>Note:</strong> Mexico not in this export.
+      </footer>
+    </div>
+  </section>
+
+  <section class="slide-section slide-ramp" id="slide-4">
+    <div class="slide-ramp__bg" aria-hidden="true"></div>
+    <div class="slide-inner">
+      <nav class="slide-nav" aria-label="Presentation slides">
+        <a href="#slide-0" data-deck-nav>Slide 0 · Executive summary</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-1" data-deck-nav>Slide 1 · TAM size</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-2" data-deck-nav>Slide 2 · GMV &amp; Core coverage</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-3" data-deck-nav>Slide 3 · Sales-Led economics</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-4" data-deck-nav>Slide 4 · QoQ ramp</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-5" data-deck-nav>Slide 5 · P&amp;L</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-6" data-deck-nav>Slide 6 · Org &amp; HC</a>
+      </nav>
+
+      <p class="slide-kicker">PoS GTM · Sales investment — Slide 4</p>
+      <h1 class="slide-title">GMV, GPV, and share must climb together — here is the quarterly cadence</h1>
+      <p class="slide-subtitle">
+        QoQ ramp 2026 Q2–2028 Q4, <strong>by country (BR · AR)</strong> — <strong>2×2:</strong> stores &amp; PoS GMV (top); adoption &amp; OffPay GPV (bottom).
+        Dollar charts are <strong>annualized</strong> (quarter × 4); bar labels show <strong>numbers only</strong> (millions USD run-rate — see panel titles). Totals above each column; BR/AR slices when wide enough.
+      </p>
+
+      <aside class="insights-card card-glass" aria-label="Ramp insights">
+        <h2 class="insights-title">Key insights</h2>
+        <ul class="insights-list">
+          <li>
+            <strong>Scale:</strong> <strong>0 → 1,439</strong> merchants by Q4 2028 with <strong>~US$357M/yr</strong> PoS GMV and <strong>~US$115M/yr</strong> OffPay GPV (run-rate) shows a ramp that is <strong>material in dollars</strong> yet still <strong>executable quarter by quarter</strong>.
+          </li>
+          <li>
+            <strong>Gateway adoption:</strong> Landing near <strong>29.2% BR</strong> and <strong>35.2% AR</strong> OffPay by Q4 2028 makes offline <strong>part of the core sale</strong>—and <strong>Argentina’s higher attach</strong> signals the motion can <strong>compound faster</strong> where export dynamics help.
+          </li>
+        </ul>
+      </aside>
+
+      <h3 class="ramp-side__title">By country (BR · AR)</h3>
+      <div class="ramp-panels-stack ramp-panels-stack--slide4">
+        <div class="ramp-panel">
+          <h4 class="ramp-panel__title">Number of store</h4>
+          <p class="ramp-panel__hint">EoP merchants</p>
+          <div id="ramp-s4-stores"></div>
+          <div class="ramp-legend" aria-hidden="true">
+            <span><i class="ramp-lg-s4m1-br" aria-hidden="true"></i>Brazil</span>
+            <span><i class="ramp-lg-s4m1-ar" aria-hidden="true"></i>Argentina</span>
+          </div>
+        </div>
+        <div class="ramp-panel">
+          <h4 class="ramp-panel__title">PoS GMV [M USD/year]</h4>
+          <p class="ramp-panel__hint">Modeled PoS GMV by country share; quarterly k USD × <strong>4</strong>. Figures on the chart are <strong>numbers only</strong> (millions USD/year run-rate). Same <strong>green / blue</strong> stack as stores.</p>
+          <div id="ramp-s4-posgmv"></div>
+          <div class="ramp-legend" aria-hidden="true">
+            <span><i class="ramp-lg-s4m2-br" aria-hidden="true"></i>Brazil</span>
+            <span><i class="ramp-lg-s4m2-ar" aria-hidden="true"></i>Argentina</span>
+          </div>
+        </div>
+        <div class="ramp-panel">
+          <h4 class="ramp-panel__title">Gateway adoption — OffPay (%)</h4>
+          <p class="ramp-panel__hint">Modeled <strong>gateway adoption</strong> — <strong>grouped columns</strong> per quarter (<strong>green</strong> = Brazil · <strong>blue</strong> = Argentina). Axis scaled to <strong>40%</strong>; <strong>% values sit above</strong> each bar (hover still shows the full tooltip). <strong>n/m</strong> = not modeled.</p>
+          <div id="ramp-s4-adoption"></div>
+          <div class="ramp-legend" aria-hidden="true">
+            <span><i class="ramp-lg-s4m3-br" aria-hidden="true"></i>Brazil</span>
+            <span><i class="ramp-lg-s4m3-ar" aria-hidden="true"></i>Argentina</span>
+          </div>
+        </div>
+        <div class="ramp-panel">
+          <h4 class="ramp-panel__title">Offline Payment GPV [M USD/year]</h4>
+          <p class="ramp-panel__hint">OffPay GPV by BR/AR share; <strong>annualized</strong> (×4). Chart figures are <strong>numbers only</strong> (millions USD/year run-rate). Same <strong>green / blue</strong> country stack.</p>
+          <div id="ramp-s4-offpaygpv"></div>
+          <div class="ramp-legend" aria-hidden="true">
+            <span><i class="ramp-lg-s4m4-br" aria-hidden="true"></i>Brazil</span>
+            <span><i class="ramp-lg-s4m4-ar" aria-hidden="true"></i>Argentina</span>
+          </div>
+        </div>
+      </div>
+
+      <footer class="slide-footer">
+        <strong>Source:</strong>
+        <a href="https://docs.google.com/spreadsheets/d/1_eeaT1osY1LZ5Tg3QAiBPUmrEzLIiQfcXMhG4TujiIM" target="_blank" rel="noopener noreferrer">PoS GTM Sales Invesment</a>
+        (Google Sheets) · Quarterly ramp — EoP merchants; PoS GMV &amp; OffPay GPV in k USD (×1,000) per <strong>quarter</strong>.
+        <strong>Country:</strong> PoS GMV &amp; OffPay GPV from <strong>BR / AR</strong> export rows; blank / <strong>n/m</strong> → <strong>0</strong>.
+        <strong>Dollar charts:</strong> quarter k USD × 4 → annualized run-rate; on-chart values are plain numbers (millions USD/year unless title notes otherwise), not FY calendar sum.
+        Mexico not shown · 2026 Q2–2028 Q4.
+      </footer>
+    </div>
+  </section>
+
+  <section class="slide-section slide-pl" id="slide-5">
+    <div class="slide-pl__bg" aria-hidden="true"></div>
+    <div class="slide-inner">
+      <nav class="slide-nav" aria-label="Presentation slides">
+        <a href="#slide-0" data-deck-nav>Slide 0 · Executive summary</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-1" data-deck-nav>Slide 1 · TAM size</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-2" data-deck-nav>Slide 2 · GMV &amp; Core coverage</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-3" data-deck-nav>Slide 3 · Sales-Led economics</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-4" data-deck-nav>Slide 4 · QoQ ramp</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-5" data-deck-nav>Slide 5 · P&amp;L</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-6" data-deck-nav>Slide 6 · Org &amp; HC</a>
+      </nav>
+
+      <p class="slide-kicker">PoS GTM · Sales investment — Slide 5</p>
+      <h1 class="slide-title">Revenue scale drowns the early investment — the model flips to material net profit</h1>
+      <p class="slide-subtitle">Annual P&amp;L in USD (PoS + OffPay): revenue, margins, commercial OPEX, and net impact — Brazil, Argentina, and total.</p>
+
+      <aside class="insights-card card-glass" aria-label="P&amp;L insights">
+        <h2 class="insights-title">Key insights</h2>
+        <ul class="insights-list">
+          <li>
+            <strong>Scale:</strong> Gross revenue rises from <strong>US$35,870</strong> (2026) to
+            <strong>US$8,843,155</strong> (2028) in this export — the dominant swing factor for the story.
+          </li>
+          <li>
+            <strong>Profitability path:</strong> <strong>Net impact</strong> is <strong>negative in 2026</strong>
+            (investment / ramp) and crosses to <strong>US$151,528</strong> (2027) and <strong>US$1,347,415</strong> (2028).
+          </li>
+          <li>
+            <strong>Mix:</strong> Brazil leads early; Argentina is <strong>about half</strong> of gross revenue by 2028
+            (~52% AR share in this export).
+          </li>
+          <li>
+            <strong>Margin dynamics:</strong> <strong>Gross margin %</strong> compresses as the business scales
+            (36.5% → 24.0% → 20.3%) while <strong>gross take-rate</strong> and <strong>ARPU</strong> improve year on year.
+          </li>
+        </ul>
+      </aside>
+
+      <div class="pl-scroll">
+        <table class="pl-table">
+          <caption>PoS GTM Sales Invesment — annual P&amp;L (USD)</caption>
+          <thead>
+            <tr>
+              <th scope="col" class="pl-th--corner">P&amp;L line · Country</th>
+              <th scope="col">2026</th>
+              <th scope="col">2027</th>
+              <th scope="col">2028</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="pl-row--strong">
+              <th scope="row">Gross revenue · Total</th>
+              <td>35,870</td>
+              <td>1,906,721</td>
+              <td>8,843,155</td>
+            </tr>
+            <tr class="pl-row--sub">
+              <th scope="row">Brazil (BR)</th>
+              <td>30,764</td>
+              <td>958,847</td>
+              <td>4,209,378</td>
+            </tr>
+            <tr class="pl-row--sub">
+              <th scope="row">Argentina (AR)</th>
+              <td>5,106</td>
+              <td>947,874</td>
+              <td>4,633,777</td>
+            </tr>
+            <tr class="pl-row--metric">
+              <th scope="row">ARPU · Total (USD)</th>
+              <td>46</td>
+              <td>256</td>
+              <td>512</td>
+            </tr>
+            <tr class="pl-row--metric">
+              <th scope="row">Gross take-rate · Total</th>
+              <td>0.8%</td>
+              <td>2.0%</td>
+              <td>3.1%</td>
+            </tr>
+            <tr class="pl-row--strong">
+              <th scope="row">Gross profit · Total</th>
+              <td>13,096</td>
+              <td>457,131</td>
+              <td>1,791,296</td>
+            </tr>
+            <tr class="pl-row--sub">
+              <th scope="row">Brazil (BR)</th>
+              <td>11,194</td>
+              <td>244,510</td>
+              <td>882,428</td>
+            </tr>
+            <tr class="pl-row--sub">
+              <th scope="row">Argentina (AR)</th>
+              <td>1,902</td>
+              <td>212,621</td>
+              <td>908,868</td>
+            </tr>
+            <tr class="pl-row--metric">
+              <th scope="row">Gross margin · Total</th>
+              <td>36.5%</td>
+              <td>24.0%</td>
+              <td>20.3%</td>
+            </tr>
+            <tr class="pl-row--metric">
+              <th scope="row">Net operating take-rate · Total</th>
+              <td>0.3%</td>
+              <td>0.5%</td>
+              <td>0.6%</td>
+            </tr>
+            <tr>
+              <th scope="row">OPEX · Commercial</th>
+              <td>85,651</td>
+              <td>305,603</td>
+              <td>443,881</td>
+            </tr>
+            <tr class="pl-row--net">
+              <th scope="row">Net impact · Total</th>
+              <td class="pl-num--neg">−72,554</td>
+              <td class="pl-num--pos">151,528</td>
+              <td class="pl-num--pos">1,347,415</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pl-callouts">
+        <div class="pl-callout">
+          <p class="pl-callout__yr">2026</p>
+          <p class="pl-callout__line"><strong>Ramp year</strong> — net impact <strong>−US$72,554</strong> vs commercial
+          OPEX <strong>US$85,651</strong>.</p>
+        </div>
+        <div class="pl-callout">
+          <p class="pl-callout__yr">2027</p>
+          <p class="pl-callout__line"><strong>Inflection</strong> — gross revenue <strong>US$1,906,721</strong>; net
+          <strong>+US$151,528</strong>.</p>
+        </div>
+        <div class="pl-callout">
+          <p class="pl-callout__yr">2028</p>
+          <p class="pl-callout__line"><strong>Run-rate</strong> — gross revenue <strong>US$8,843,155</strong>; net
+          <strong>US$1,347,415</strong>.</p>
+        </div>
+      </div>
+
+      <footer class="slide-footer">
+        <strong>Source:</strong>
+        <a href="https://docs.google.com/spreadsheets/d/1_eeaT1osY1LZ5Tg3QAiBPUmrEzLIiQfcXMhG4TujiIM" target="_blank" rel="noopener noreferrer">PoS GTM Sales Invesment</a>
+        (Google Sheets) · Annual P&amp;L projection (figures in USD) ·
+        <strong>Scope:</strong> total / BR / AR where shown; Biz = All · <strong>Net impact:</strong> modeled as stated in
+        sheet (pre-tax interpretation; confirm with finance) · <strong>Note:</strong> rounding; Mexico not in this export.
+      </footer>
+    </div>
+  </section>
+
+  <section class="slide-section slide-org" id="slide-6">
+    <div class="slide-org__bg" aria-hidden="true"></div>
+    <div class="slide-inner">
+      <nav class="slide-nav" aria-label="Presentation slides">
+        <a href="#slide-0" data-deck-nav>Slide 0 · Executive summary</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-1" data-deck-nav>Slide 1 · TAM size</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-2" data-deck-nav>Slide 2 · GMV &amp; Core coverage</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-3" data-deck-nav>Slide 3 · Sales-Led economics</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-4" data-deck-nav>Slide 4 · QoQ ramp</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-5" data-deck-nav>Slide 5 · P&amp;L</a>
+        <span class="slide-nav__sep" aria-hidden="true">|</span>
+        <a href="#slide-6" data-deck-nav>Slide 6 · Org &amp; HC</a>
+      </nav>
+
+      <p class="slide-kicker">PoS GTM · Sales investment — Slide 6 · Org &amp; HC</p>
+      <h1 class="slide-title">Commercial org at year-end — LatAm roll-up (26 Q4), then by country</h1>
+      <p class="slide-subtitle">Three EoP snapshots (26 Q4, 27 Q4, 28 Q4) · same HC &amp; cost series as the BR/AR tables below (Biz = All).</p>
+
+      <aside class="insights-card card-glass" aria-label="Headcount insights">
+        <h2 class="insights-title">Key insights</h2>
+        <ul class="insights-list">
+          <li>
+            <strong>Launch with a Head to build the foundation</strong>—processes, collateral, and first sale. It will scale Brazil and initiate Argentina, which will have a dedicated Head once complexity demands it.
+          </li>
+          <li>
+            <strong>Brazil:</strong> AE L3 from <strong>26 Q3</strong>; steady <strong>Mgr L5</strong>. <strong>AM L3</strong> ramps through 2028; <strong>Mgr L4</strong> from <strong>28 Q3</strong>.
+            CoR stays <strong>zero</strong> until 2027 then tracks the AM ramp.
+          </li>
+          <li>
+            <strong>Argentina:</strong> OPEX from <strong>26 Q4</strong>; headcount trails then <strong>matches BR</strong> by <strong>28 Q4</strong> (<strong>10</strong> FTE here). <strong>Mgr L5</strong> from <strong>27 Q2</strong>; <strong>Mgr L4</strong> from <strong>28 Q3</strong>.
+          </li>
+          <li>
+            <strong>Cash:</strong> Commercial CoR+OPEX about <strong>US$101k</strong>/qtr (AR) vs <strong>US$98k</strong> (BR) by <strong>28 Q4</strong> on these rows — check live sheet.
+          </li>
+        </ul>
+      </aside>
+
+      <div class="org-s7-grid" id="org-triple-root" aria-busy="true"></div>
+
+      <div class="ramp-two-col">
+        <div class="ramp-side">
+          <h3 class="ramp-side__title">Brazil</h3>
+          <div class="ramp-panels-stack ramp-panels-stack--hc">
+            <div class="ramp-panel">
+              <h4 class="ramp-panel__title">Headcount (FTE by role)</h4>
+              <div id="hc-br-headcount"></div>
+            </div>
+            <div class="ramp-panel">
+              <h4 class="ramp-panel__title">CoR + OPEX · Commercial (USD/year)</h4>
+              <div id="hc-br-cost"></div>
+            </div>
+          </div>
+        </div>
+        <div class="ramp-side">
+          <h3 class="ramp-side__title">Argentina</h3>
+          <div class="ramp-panels-stack ramp-panels-stack--hc">
+            <div class="ramp-panel">
+              <h4 class="ramp-panel__title">Headcount (FTE by role)</h4>
+              <div id="hc-ar-headcount"></div>
+            </div>
+            <div class="ramp-panel">
+              <h4 class="ramp-panel__title">CoR + OPEX · Commercial (USD/year)</h4>
+              <div id="hc-ar-cost"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="slide-footer">
+        <strong>Source:</strong>
+        <a href="https://docs.google.com/spreadsheets/d/1_eeaT1osY1LZ5Tg3QAiBPUmrEzLIiQfcXMhG4TujiIM" target="_blank" rel="noopener noreferrer">PoS GTM Sales Invesment</a>
+        (Google Sheets) ·
+        <strong>Assumption:</strong> ~<strong>60 merchants / AM</strong> in planning · Guru / AM L2 rows = 0 in export · Mexico not shown.
+      </footer>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var BY_COUNTRY = [
+        { key: "BR", stores: 52197, gmv: 963703176, rev: 33745937 },
+        { key: "AR", stores: 38875, gmv: 1478997156, rev: 81310026 },
+        { key: "MX", stores: 2972, gmv: 91202448, rev: 5062902 },
+      ];
+
+      var BY_SIZE = [
+        { key: "< US$5k", stores: 86412, gmv: 1000254084, rev: 51931817 },
+        { key: "US$5k – 20k", stores: 5666, gmv: 652226832, rev: 29440604 },
+        { key: "> US$20k", stores: 1966, gmv: 881421864, rev: 38746444 },
+      ];
+
+      function fmtIntEn(n) {
+        return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+
+      function sumField(rows, field) {
+        return rows.reduce(function (acc, r) {
+          return acc + r[field];
+        }, 0);
+      }
+
+      function fmtPct(p) {
+        return p.toFixed(1) + "%";
+      }
+
+      function buildStackedMetricChart(rows, field, title, valueFormatter, barPalette) {
+        var barPrefix = barPalette === "country" ? "bar-country-" : "bar-size-";
+        var total = sumField(rows, field);
+        var yAxisHtml = ["100%", "75%", "50%", "25%", "0%"]
+          .map(function (t) {
+            return "<span>" + t + "</span>";
+          })
+          .join("");
+
+        var segsHtml = "";
+        rows.forEach(function (r, i) {
+          var v = r[field];
+          var pctNum = total > 0 ? (v / total) * 100 : 0;
+          var frac = total > 0 ? v / total : 0;
+          var pctStr = fmtPct(pctNum);
+          var valStr = valueFormatter(v);
+          var thin = pctNum < 11;
+          var delay = i * 0.1 + "s";
+          var tip = escapeHtml(r.key) + ": " + pctStr + " — " + escapeHtml(valStr);
+          segsHtml +=
+            '<div class="stack-seg ' +
+            barPrefix +
+            i +
+            (thin ? " seg--thin" : "") +
+            '" style="--fr: ' +
+            frac +
+            "; --delay: " +
+            delay +
+            '" title="' +
+            tip +
+            '">' +
+            '<span class="seg-text"><span class="seg-pct">' +
+            pctStr +
+            '</span><span class="seg-val">' +
+            escapeHtml(valStr) +
+            "</span></span></div>";
+        });
+
+        var totalStr = valueFormatter(total);
+        var aria =
+          escapeHtml(title) +
+          ". Total " +
+          escapeHtml(totalStr) +
+          ". " +
+          rows
+            .map(function (r) {
+              var v = r[field];
+              var p = total > 0 ? (v / total) * 100 : 0;
+              return escapeHtml(r.key) + " " + fmtPct(p) + ", " + escapeHtml(valueFormatter(v));
+            })
+            .join("; ");
+
+        return (
+          '<div class="metric-block">' +
+          '<p class="metric-block__label">' +
+          escapeHtml(title) +
+          "</p>" +
+          '<div class="chart-container layout-chart" role="img" aria-label="' +
+          escapeHtml(aria) +
+          '">' +
+          '<div class="stacked-chart__main">' +
+          '<div class="stacked-col">' +
+          segsHtml +
+          "</div>" +
+          '<span class="stacked-x-label">Share of total</span>' +
+          '<p class="stacked-total">Total (100%): <strong>' +
+          escapeHtml(totalStr) +
+          "</strong></p></div>" +
+          '<div class="chart-y-axis" aria-hidden="true">' +
+          yAxisHtml +
+          "</div></div></div>"
+        );
+      }
+
+      function escapeHtml(s) {
+        return String(s)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      /**
+       * Slide 6: org + HC tables on same slide. 26 Q4 org: one LatAm column (merged AEs, Head for LatAm).
+       * 27 Q4: AMs before M4 (AMs to M5). 28 Q4: M4 directly under M5.
+       */
+      function hcQuarterYearFromLabel(label) {
+        var m = String(label).match(/^(\d{2})\s+Q/i);
+        return m ? 2000 + parseInt(m[1], 10) : null;
+      }
+
+      /** Calendar-year totals (USD): BR+AR CoR+OPEX, same bucketing as Slide 6 cost panels. */
+      function combinedCommercialAnnualUsdByYear(
+        quarterLabels,
+        corBr,
+        opexBr,
+        corAr,
+        opexAr
+      ) {
+        var buckets = {};
+        var i;
+        for (i = 0; i < quarterLabels.length; i++) {
+          var y = hcQuarterYearFromLabel(quarterLabels[i]);
+          if (y === null) {
+            continue;
+          }
+          if (!buckets[y]) {
+            buckets[y] = 0;
+          }
+          buckets[y] +=
+            (corBr[i] || 0) +
+            (opexBr[i] || 0) +
+            (corAr[i] || 0) +
+            (opexAr[i] || 0);
+        }
+        return buckets;
+      }
+
+      function orgSlide7CardInvestmentHtml(snapYear, annualUsd) {
+        var titleBase =
+          "Brazil + Argentina commercial CoR + OPEX, calendar " +
+          String(snapYear !== null && snapYear !== undefined ? snapYear : "—") +
+          " (annual total; same roll-up as the BR/AR cost tables on this slide)";
+        if (
+          snapYear === null ||
+          snapYear === undefined ||
+          annualUsd === undefined ||
+          annualUsd === null ||
+          annualUsd <= 0
+        ) {
+          return (
+            '<p class="org-s7-card__investment" title="' +
+            escapeHtml(titleBase) +
+            '">CoR + OPEX: <span class="org-s7-card__investment__val">—</span></p>'
+          );
+        }
+        var k = Math.round(annualUsd / 1000);
+        var kDisp = k < 1 ? "&lt;1k" : fmtIntEn(k) + "k";
+        var exact =
+          fmtIntEn(Math.round(annualUsd)) +
+          " USD/year (calendar " +
+          snapYear +
+          ", BR + AR combined)";
+        return (
+          '<p class="org-s7-card__investment" title="' +
+          escapeHtml(exact) +
+          '">CoR + OPEX: <span class="org-s7-card__investment__val">~US$' +
+          kDisp +
+          "</span></p>"
+        );
+      }
+
+      function orgHcJoinIndex(series, snapshotQi, slot1Based) {
+        var o;
+        for (o = 0; o <= snapshotQi; o++) {
+          if ((series[o] || 0) >= slot1Based) {
+            return o;
+          }
+        }
+        return snapshotQi;
+      }
+
+      function renderOrgSlide7(
+        quarterLabels,
+        seriesBr,
+        seriesAr,
+        corBr,
+        opexBr,
+        corAr,
+        opexAr
+      ) {
+        var root = document.getElementById("org-triple-root");
+        if (!root) {
+          return;
+        }
+
+        var spendByYear = combinedCommercialAnnualUsdByYear(
+          quarterLabels,
+          corBr || [],
+          opexBr || [],
+          corAr || [],
+          opexAr || []
+        );
+
+        var IDX_AM = 0;
+        var IDX_AE2 = 1;
+        var IDX_AE3 = 2;
+        var IDX_M4 = 3;
+        var IDX_M5 = 4;
+
+        var snapshots = [
+          { label: "26 Q4 · EoP", qi: 2 },
+          { label: "27 Q4 · EoP", qi: 6 },
+          { label: "28 Q4 · EoP", qi: 10 },
+        ];
+
+        function orgFlagEmoji(code) {
+          return code === "BR"
+            ? "\uD83C\uDDE7\uD83C\uDDF7"
+            : "\uD83C\uDDE6\uD83C\uDDF7";
+        }
+
+        function orgCountryAria(code) {
+          return code === "BR" ? "Brazil" : "Argentina";
+        }
+
+        function orgGeoLabelHtml(countryCode) {
+          return (
+            '<div class="org-s7-geo__label org-s7-geo__label--country">' +
+            escapeHtml(orgCountryAria(countryCode)) +
+            "</div>"
+          );
+        }
+
+        function orgLatAmGeoLabelHtml() {
+          return (
+            '<div class="org-s7-geo__label org-s7-geo__label--country">' +
+            escapeHtml("LatAm") +
+            "</div>"
+          );
+        }
+
+        function orgNodeFlagSpan(flagClass, countryCode) {
+          return (
+            '<span class="org-s7-node__flag ' +
+            flagClass +
+            '" role="img" aria-label="' +
+            escapeHtml(orgCountryAria(countryCode)) +
+            '">' +
+            orgFlagEmoji(countryCode) +
+            "</span>"
+          );
+        }
+
+        /** No emoji flags on IC nodes for 27 Q4 / 28 Q4 (country still in column title). */
+        function orgIcFlagHtml(flagClass, countryCode, qi) {
+          if (qi === 6 || qi === 10) {
+            return "";
+          }
+          return orgNodeFlagSpan(flagClass, countryCode);
+        }
+
+        function joinLab(seriesRow, qi, slot) {
+          var ji = orgHcJoinIndex(seriesRow, qi, slot);
+          return quarterLabels[ji] || "—";
+        }
+
+        function hcQuarterCalendarYear(label) {
+          var m = String(label).match(/^(\d{2})\s+Q\s*(\d)/i);
+          return m ? 2000 + parseInt(m[1], 10) : null;
+        }
+
+        /** Quarter text + "New Hire" when first HC falls in the snapshot's calendar year. */
+        function joinLineWithNewHire(seriesRow, snapshotQi, slot) {
+          var jq = joinLab(seriesRow, snapshotQi, slot);
+          if (jq === "—") {
+            return escapeHtml(jq);
+          }
+          var joinY = hcQuarterCalendarYear(jq);
+          var snapY = hcQuarterCalendarYear(quarterLabels[snapshotQi]);
+          var inner = escapeHtml(jq);
+          if (joinY !== null && snapY !== null && joinY === snapY) {
+            inner += '<span class="org-s7-node__newhire">New Hire</span>';
+          }
+          return inner;
+        }
+
+        function vlineHtml() {
+          return '<div class="org-s7-vline" aria-hidden="true"></div>';
+        }
+
+        /** Empty dashed slot above AE stack (28 Q4 split layout only; qi = 28 Q4 index). */
+        function orgSlide7AeSlotPlaceholder28Q4(qi) {
+          if (qi !== 10) {
+            return "";
+          }
+          return (
+            '<div class="org-s7-ae-slot-placeholder" title="Open headcount slot above Account Executives">' +
+            '<span class="org-s7-ae-slot-placeholder__mark">' +
+            escapeHtml("Vacant") +
+            "</span>" +
+            "</div>"
+          );
+        }
+
+        /** 28 Q4: AE column | M4+AM branch. 27 Q4: AE | AM. Else: AE → M4 → AM. */
+        function orgTierOrder(qi, nAE, nM4, nAM) {
+          var tiers = [];
+          var hasAE = nAE > 0;
+          var hasM4 = nM4 > 0;
+          var hasAM = nAM > 0;
+          if (qi === 10) {
+            if (hasAE || hasM4 || hasAM) {
+              tiers.push("ae_m4_am_split");
+            }
+            return tiers;
+          }
+          if (qi === 6) {
+            if (hasAE || hasAM) {
+              tiers.push("ae_am_split");
+            }
+            if (hasM4) {
+              tiers.push("m4");
+            }
+            return tiers;
+          }
+          if (hasAE) {
+            tiers.push("ae");
+          }
+          if (hasM4) {
+            tiers.push("m4");
+          }
+          if (hasAM) {
+            tiers.push("am");
+          }
+          return tiers;
+        }
+
+        /** AE L2 + L3 in one column, oldest hire (earliest ramp quarter) at top. */
+        function aeTierInnerHtml(series, qi, flagClass, geoCode) {
+          var nAE2 = series[IDX_AE2][qi] || 0;
+          var nAE3 = series[IDX_AE3][qi] || 0;
+          if (nAE2 + nAE3 === 0) {
+            return "";
+          }
+          var items = [];
+          var si;
+          for (si = 1; si <= nAE2; si++) {
+            items.push({
+              ji: orgHcJoinIndex(series[IDX_AE2], qi, si),
+              tier: 2,
+              slot: si,
+            });
+          }
+          for (si = 1; si <= nAE3; si++) {
+            items.push({
+              ji: orgHcJoinIndex(series[IDX_AE3], qi, si),
+              tier: 3,
+              slot: si,
+            });
+          }
+          items.sort(function (a, b) {
+            if (a.ji !== b.ji) {
+              return a.ji - b.ji;
+            }
+            if (a.tier !== b.tier) {
+              return a.tier - b.tier;
+            }
+            return a.slot - b.slot;
+          });
+          var parts = [];
+          var i;
+          for (i = 0; i < items.length; i++) {
+            var it = items[i];
+            var row = it.tier === 2 ? series[IDX_AE2] : series[IDX_AE3];
+            var roleLab = it.tier === 2 ? "AE L2" : "AE L3";
+            parts.push(
+              '<div class="org-s7-node org-s7-node--ae">' +
+                orgIcFlagHtml(flagClass, geoCode, qi) +
+                '<div class="org-s7-node__role">' +
+                roleLab +
+                "</div>" +
+                '<div class="org-s7-node__join">' +
+                joinLineWithNewHire(row, qi, it.slot) +
+                "</div></div>"
+            );
+          }
+          return parts.join("");
+        }
+
+        /** BR + AR AEs in one stack, sorted by hire quarter (flags keep country HC). */
+        function aeTierInnerHtmlMerged(seriesBr, seriesAr, qi) {
+          var flagBr = "org-s7-node__flag--br";
+          var flagAr = "org-s7-node__flag--ar";
+          var items = [];
+          var si;
+          var pushTier = function (series, geoCode, flagClass, tier, rowIdx) {
+            var row = rowIdx === 2 ? series[IDX_AE2] : series[IDX_AE3];
+            var n = row[qi] || 0;
+            for (si = 1; si <= n; si++) {
+              items.push({
+                ji: orgHcJoinIndex(row, qi, si),
+                tier: tier,
+                slot: si,
+                series: series,
+                row: row,
+                geoCode: geoCode,
+                flagClass: flagClass,
+              });
+            }
+          };
+          pushTier(seriesBr, "BR", flagBr, 2, 2);
+          pushTier(seriesBr, "BR", flagBr, 3, 3);
+          pushTier(seriesAr, "AR", flagAr, 2, 2);
+          pushTier(seriesAr, "AR", flagAr, 3, 3);
+          if (items.length === 0) {
+            return "";
+          }
+          items.sort(function (a, b) {
+            if (a.ji !== b.ji) {
+              return a.ji - b.ji;
+            }
+            if (a.tier !== b.tier) {
+              return a.tier - b.tier;
+            }
+            if (a.geoCode !== b.geoCode) {
+              return a.geoCode === "BR" ? -1 : 1;
+            }
+            return a.slot - b.slot;
+          });
+          var parts = [];
+          var i;
+          for (i = 0; i < items.length; i++) {
+            var it = items[i];
+            var roleLab = it.tier === 2 ? "AE L2" : "AE L3";
+            parts.push(
+              '<div class="org-s7-node org-s7-node--ae">' +
+                orgIcFlagHtml(it.flagClass, it.geoCode, qi) +
+                '<div class="org-s7-node__role">' +
+                roleLab +
+                "</div>" +
+                '<div class="org-s7-node__join">' +
+                joinLineWithNewHire(it.row, qi, it.slot) +
+                "</div></div>"
+            );
+          }
+          return parts.join("");
+        }
+
+        function aeTierHtml(series, qi, flagClass, geoCode) {
+          var inner = aeTierInnerHtml(series, qi, flagClass, geoCode);
+          if (!inner) {
+            return "";
+          }
+          return '<div class="org-s7-ae-stack">' + inner + "</div>";
+        }
+
+        /** AM slots sorted by hire quarter (same slot semantics as HC series). */
+        function amTierInnerHtml(series, qi, flagClass, geoCode) {
+          var nAM = series[IDX_AM][qi] || 0;
+          if (nAM <= 0) {
+            return "";
+          }
+          var slots = [];
+          var si;
+          for (si = 1; si <= nAM; si++) {
+            slots.push({
+              ji: orgHcJoinIndex(series[IDX_AM], qi, si),
+              slot: si,
+            });
+          }
+          slots.sort(function (a, b) {
+            if (a.ji !== b.ji) {
+              return a.ji - b.ji;
+            }
+            return a.slot - b.slot;
+          });
+          var parts = [];
+          for (si = 0; si < slots.length; si++) {
+            var s = slots[si];
+            parts.push(
+              '<div class="org-s7-node org-s7-node--am">' +
+                orgIcFlagHtml(flagClass, geoCode, qi) +
+                '<div class="org-s7-node__role">AM L3</div>' +
+                '<div class="org-s7-node__join">' +
+                joinLineWithNewHire(series[IDX_AM], qi, s.slot) +
+                "</div></div>"
+            );
+          }
+          return parts.join("");
+        }
+
+        function amTierInnerHtmlMerged(seriesBr, seriesAr, qi) {
+          var flagBr = "org-s7-node__flag--br";
+          var flagAr = "org-s7-node__flag--ar";
+          var items = [];
+          var si;
+          var pushAm = function (series, geoCode, flagClass) {
+            var row = series[IDX_AM];
+            var n = row[qi] || 0;
+            for (si = 1; si <= n; si++) {
+              items.push({
+                ji: orgHcJoinIndex(row, qi, si),
+                slot: si,
+                series: series,
+                row: row,
+                geoCode: geoCode,
+                flagClass: flagClass,
+              });
+            }
+          };
+          pushAm(seriesBr, "BR", flagBr);
+          pushAm(seriesAr, "AR", flagAr);
+          if (items.length === 0) {
+            return "";
+          }
+          items.sort(function (a, b) {
+            if (a.ji !== b.ji) {
+              return a.ji - b.ji;
+            }
+            if (a.geoCode !== b.geoCode) {
+              return a.geoCode === "BR" ? -1 : 1;
+            }
+            return a.slot - b.slot;
+          });
+          var parts = [];
+          for (si = 0; si < items.length; si++) {
+            var it = items[si];
+            parts.push(
+              '<div class="org-s7-node org-s7-node--am">' +
+                orgIcFlagHtml(it.flagClass, it.geoCode, qi) +
+                '<div class="org-s7-node__role">AM L3</div>' +
+                '<div class="org-s7-node__join">' +
+                joinLineWithNewHire(it.row, qi, it.slot) +
+                "</div></div>"
+            );
+          }
+          return parts.join("");
+        }
+
+        /** 26 Q4: one LatAm column — single M5 label, merged IC stacks where needed. */
+        function latAmGeoColumn(seriesBr, seriesAr, qi) {
+          var nM5Br = seriesBr[IDX_M5][qi] || 0;
+          var nM5Ar = seriesAr[IDX_M5][qi] || 0;
+          var m5Series = nM5Br > 0 ? seriesBr : seriesAr;
+          var hasM5 = nM5Br > 0 || nM5Ar > 0;
+
+          var nAE2Br = seriesBr[IDX_AE2][qi] || 0;
+          var nAE3Br = seriesBr[IDX_AE3][qi] || 0;
+          var nAE2Ar = seriesAr[IDX_AE2][qi] || 0;
+          var nAE3Ar = seriesAr[IDX_AE3][qi] || 0;
+          var nM4Br = seriesBr[IDX_M4][qi] || 0;
+          var nM4Ar = seriesAr[IDX_M4][qi] || 0;
+          var nAMBr = seriesBr[IDX_AM][qi] || 0;
+          var nAMAr = seriesAr[IDX_AM][qi] || 0;
+
+          var nAEForTiers = nAE2Br + nAE3Br + nAE2Ar + nAE3Ar;
+          var nM4Sum = nM4Br + nM4Ar;
+          var nAMSum = nAMBr + nAMAr;
+          var anyIc =
+            nAEForTiers + nM4Sum + nAMSum > 0;
+
+          if (!hasM5 && !anyIc) {
+            return (
+              '<div class="org-s7-geo org-s7-geo--latam">' +
+              orgLatAmGeoLabelHtml() +
+              '<p class="org-s7-legend" style="margin:0.5rem 0 0;text-align:center;color:#64748b">No FTE in model</p></div>'
+            );
+          }
+
+          var h = [];
+          h.push('<div class="org-s7-geo org-s7-geo--latam">');
+          h.push(orgLatAmGeoLabelHtml());
+          h.push('<div class="org-s7-stack">');
+
+          if (hasM5) {
+            h.push('<div class="org-s7-level" style="align-self:center">');
+            h.push(
+              '<div class="org-s7-node org-s7-node--m5">' +
+                '<div class="org-s7-node__role">Mgr L5</div>' +
+                '<div class="org-s7-node__sub">' +
+                escapeHtml("Head for LatAm") +
+                "</div>" +
+                '<div class="org-s7-node__join">' +
+                joinLineWithNewHire(m5Series[IDX_M5], qi, 1) +
+                "</div></div></div>"
+            );
+          } else {
+            h.push('<div class="org-s7-level" style="align-self:center">');
+            h.push(
+              '<div class="org-s7-node org-s7-node--m5 org-s7-node--ghost">' +
+                '<div class="org-s7-node__role">Mgr L5</div>' +
+                '<div class="org-s7-node__sub">Not in HC yet</div>' +
+                '<div class="org-s7-node__join">—</div></div></div>'
+            );
+          }
+
+          var tierTypes = orgTierOrder(qi, nAEForTiers, nM4Sum, nAMSum);
+          var flagBr = "org-s7-node__flag--br";
+          var flagAr = "org-s7-node__flag--ar";
+          var ti;
+          for (ti = 0; ti < tierTypes.length; ti++) {
+            h.push(vlineHtml());
+            var tt = tierTypes[ti];
+            if (tt === "ae_m4_am_split") {
+              h.push(
+                aeM4AmSplit28HtmlLatAm(seriesBr, seriesAr, qi, flagBr, flagAr)
+              );
+            } else if (tt === "ae_am_split") {
+              h.push(
+                aeAmSplit27HtmlLatAm(seriesBr, seriesAr, qi, flagBr, flagAr)
+              );
+            } else if (tt === "ae") {
+              var mergedAe = aeTierInnerHtmlMerged(seriesBr, seriesAr, qi);
+              if (mergedAe) {
+                h.push(
+                  '<div class="org-s7-ae-stack" title="LatAm AE stack (BR + AR HC), by hire quarter">'
+                );
+                h.push(mergedAe);
+                h.push("</div>");
+              }
+            } else if (tt === "m4") {
+              h.push(m4TierLatamRow(seriesBr, seriesAr, qi, flagBr, flagAr));
+            } else if (tt === "am") {
+              var amM = amTierInnerHtmlMerged(seriesBr, seriesAr, qi);
+              if (amM) {
+                h.push('<div class="org-s7-am-stack">' + amM + "</div>");
+              }
+            }
+          }
+
+          h.push("</div></div>");
+          return h.join("");
+        }
+
+        function m4TierLatamRow(seriesBr, seriesAr, qi, flagBr, flagAr) {
+          var nM4Br = seriesBr[IDX_M4][qi] || 0;
+          var nM4Ar = seriesAr[IDX_M4][qi] || 0;
+          if (nM4Br <= 0 && nM4Ar <= 0) {
+            return "";
+          }
+          var row = [];
+          if (nM4Br > 0) {
+            row.push(
+              '<div class="org-s7-node org-s7-node--m4">' +
+                orgIcFlagHtml(flagBr, "BR", qi) +
+                '<div class="org-s7-node__role">Mgr L4</div>' +
+                '<div class="org-s7-node__sub">Head of AMs</div>' +
+                '<div class="org-s7-node__join">' +
+                joinLineWithNewHire(seriesBr[IDX_M4], qi, 1) +
+                "</div></div>"
+            );
+          }
+          if (nM4Ar > 0) {
+            row.push(
+              '<div class="org-s7-node org-s7-node--m4">' +
+                orgIcFlagHtml(flagAr, "AR", qi) +
+                '<div class="org-s7-node__role">Mgr L4</div>' +
+                '<div class="org-s7-node__sub">Head of AMs</div>' +
+                '<div class="org-s7-node__join">' +
+                joinLineWithNewHire(seriesAr[IDX_M4], qi, 1) +
+                "</div></div>"
+            );
+          }
+          return '<div class="org-s7-row">' + row.join("") + "</div>";
+        }
+
+        function aeAmSplit27HtmlLatAm(seriesBr, seriesAr, qi, flagBr, flagAr) {
+          var aeInner = aeTierInnerHtmlMerged(seriesBr, seriesAr, qi);
+          var amInner = amTierInnerHtmlMerged(seriesBr, seriesAr, qi);
+          var left = aeInner
+            ? '<div class="org-s7-ae-stack">' + aeInner + "</div>"
+            : '<div class="org-s7-split-27__spacer" aria-hidden="true"></div>';
+          var right = amInner
+            ? '<div class="org-s7-am-stack">' + amInner + "</div>"
+            : '<div class="org-s7-split-27__spacer" aria-hidden="true"></div>';
+          return (
+            '<div class="org-s7-split-27" role="group" aria-label="AE and AM under Mgr L5 (LatAm)">' +
+            '<div class="org-s7-split-27__col">' +
+            left +
+            "</div>" +
+            '<div class="org-s7-split-27__col">' +
+            right +
+            "</div></div>"
+          );
+        }
+
+        function aeM4AmSplit28HtmlLatAm(seriesBr, seriesAr, qi, flagBr, flagAr) {
+          var aeInner = aeTierInnerHtmlMerged(seriesBr, seriesAr, qi);
+          var nM4Br = seriesBr[IDX_M4][qi] || 0;
+          var nM4Ar = seriesAr[IDX_M4][qi] || 0;
+          var amInner = amTierInnerHtmlMerged(seriesBr, seriesAr, qi);
+
+          var left = orgSlide7AeSlotPlaceholder28Q4(qi);
+          if (aeInner) {
+            left += '<div class="org-s7-ae-stack">' + aeInner + "</div>";
+          } else if (!left) {
+            left = '<div class="org-s7-split-28__spacer" aria-hidden="true"></div>';
+          }
+
+          var right = "";
+          if (nM4Br + nM4Ar > 0 || amInner) {
+            right += '<div class="org-s7-split-28__branch">';
+            var m4Row = m4TierLatamRow(seriesBr, seriesAr, qi, flagBr, flagAr);
+            if (m4Row) {
+              right += m4Row;
+            }
+            if (m4Row && amInner) {
+              right += vlineHtml();
+            }
+            if (amInner) {
+              right += '<div class="org-s7-am-stack">' + amInner + "</div>";
+            }
+            right += "</div>";
+          } else {
+            right =
+              '<div class="org-s7-split-28__spacer" aria-hidden="true"></div>';
+          }
+
+          return (
+            '<div class="org-s7-split-28" role="group" aria-label="AEs and AM hierarchy under Mgr L5 (LatAm)">' +
+            '<div class="org-s7-split-28__col">' +
+            left +
+            "</div>" +
+            '<div class="org-s7-split-28__col">' +
+            right +
+            "</div></div>"
+          );
+        }
+
+        /** 27 Q4 layout: AEs stacked left, AMs stacked right (same M5 parent). */
+        function aeAmSplit27Html(series, qi, flagClass, geoCode) {
+          var aeInner = aeTierInnerHtml(series, qi, flagClass, geoCode);
+          var amInner = amTierInnerHtml(series, qi, flagClass, geoCode);
+          var left = aeInner
+            ? '<div class="org-s7-ae-stack">' + aeInner + "</div>"
+            : '<div class="org-s7-split-27__spacer" aria-hidden="true"></div>';
+          var right = amInner
+            ? '<div class="org-s7-am-stack">' + amInner + "</div>"
+            : '<div class="org-s7-split-27__spacer" aria-hidden="true"></div>';
+          return (
+            '<div class="org-s7-split-27" role="group" aria-label="AE and AM under Mgr L5">' +
+            '<div class="org-s7-split-27__col">' +
+            left +
+            "</div>" +
+            '<div class="org-s7-split-27__col">' +
+            right +
+            "</div></div>"
+          );
+        }
+
+        /** 28 Q4: AEs left; right = Mgr L4 then connector then AM stack. */
+        function aeM4AmSplit28Html(series, qi, flagClass, geoCode) {
+          var aeInner = aeTierInnerHtml(series, qi, flagClass, geoCode);
+          var nM4 = series[IDX_M4][qi] || 0;
+          var amInner = amTierInnerHtml(series, qi, flagClass, geoCode);
+
+          var left = orgSlide7AeSlotPlaceholder28Q4(qi);
+          if (aeInner) {
+            left += '<div class="org-s7-ae-stack">' + aeInner + "</div>";
+          } else if (!left) {
+            left = '<div class="org-s7-split-28__spacer" aria-hidden="true"></div>';
+          }
+
+          var right = "";
+          if (nM4 > 0 || amInner) {
+            right += '<div class="org-s7-split-28__branch">';
+            if (nM4 > 0) {
+              right +=
+                '<div class="org-s7-row">' +
+                '<div class="org-s7-node org-s7-node--m4">' +
+                orgIcFlagHtml(flagClass, geoCode, qi) +
+                '<div class="org-s7-node__role">Mgr L4</div>' +
+                '<div class="org-s7-node__sub">Head of AMs</div>' +
+                '<div class="org-s7-node__join">' +
+                joinLineWithNewHire(series[IDX_M4], qi, 1) +
+                "</div></div></div>";
+            }
+            if (nM4 > 0 && amInner) {
+              right += vlineHtml();
+            }
+            if (amInner) {
+              right += '<div class="org-s7-am-stack">' + amInner + "</div>";
+            }
+            right += "</div>";
+          } else {
+            right =
+              '<div class="org-s7-split-28__spacer" aria-hidden="true"></div>';
+          }
+
+          return (
+            '<div class="org-s7-split-28" role="group" aria-label="AEs and AM hierarchy under Mgr L5">' +
+            '<div class="org-s7-split-28__col">' +
+            left +
+            "</div>" +
+            '<div class="org-s7-split-28__col">' +
+            right +
+            "</div></div>"
+          );
+        }
+
+        function countryGeoColumn(countryCode, series, qi, peerSeries) {
+          var si;
+          peerSeries = peerSeries || null;
+          var nM5 = series[IDX_M5][qi] || 0;
+          var nAE2 = series[IDX_AE2][qi] || 0;
+          var nAE3 = series[IDX_AE3][qi] || 0;
+          var nM4 = series[IDX_M4][qi] || 0;
+          var nAM = series[IDX_AM][qi] || 0;
+          var geoClass = countryCode === "BR" ? "org-s7-geo--br" : "org-s7-geo--ar";
+          var flagClass = countryCode === "BR" ? "org-s7-node__flag--br" : "org-s7-node__flag--ar";
+          var headSub = countryCode === "BR" ? "Head for BR" : "Head for AR";
+
+          var nAEForTiers = nAE2 + nAE3;
+          if (countryCode === "AR" && qi === 2) {
+            nAEForTiers = 0;
+          }
+          if (countryCode === "BR" && qi === 2 && peerSeries) {
+            nAEForTiers =
+              nAE2 +
+              nAE3 +
+              (peerSeries[IDX_AE2][qi] || 0) +
+              (peerSeries[IDX_AE3][qi] || 0);
+          }
+
+          var anyIc = nAE2 + nAE3 + nM4 + nAM > 0;
+          if (nM5 <= 0 && !anyIc) {
+            return (
+              '<div class="org-s7-geo ' +
+              geoClass +
+              '">' +
+              orgGeoLabelHtml(countryCode) +
+              '<p class="org-s7-legend" style="margin:0.5rem 0 0;text-align:center;color:#64748b">No FTE in model</p></div>'
+            );
+          }
+
+          var h = [];
+          h.push('<div class="org-s7-geo ' + geoClass + '">');
+          h.push(orgGeoLabelHtml(countryCode));
+          h.push('<div class="org-s7-stack">');
+
+          if (nM5 > 0) {
+            h.push('<div class="org-s7-level" style="align-self:center">');
+            h.push(
+              '<div class="org-s7-node org-s7-node--m5">' +
+                '<div class="org-s7-node__role">Mgr L5</div>' +
+                '<div class="org-s7-node__sub">' +
+                escapeHtml(headSub) +
+                "</div>" +
+                '<div class="org-s7-node__join">' +
+                joinLineWithNewHire(series[IDX_M5], qi, 1) +
+                "</div></div></div>"
+            );
+          } else {
+            h.push('<div class="org-s7-level" style="align-self:center">');
+            h.push(
+              '<div class="org-s7-node org-s7-node--m5 org-s7-node--ghost">' +
+                '<div class="org-s7-node__role">Mgr L5</div>' +
+                '<div class="org-s7-node__sub">Not in HC yet</div>' +
+                '<div class="org-s7-node__join">—</div></div></div>'
+            );
+          }
+
+          var tierTypes = orgTierOrder(qi, nAEForTiers, nM4, nAM);
+
+          var ti;
+          for (ti = 0; ti < tierTypes.length; ti++) {
+            h.push(vlineHtml());
+            var tt = tierTypes[ti];
+            if (tt === "ae_m4_am_split") {
+              h.push(aeM4AmSplit28Html(series, qi, flagClass, countryCode));
+            } else if (tt === "ae_am_split") {
+              h.push(aeAmSplit27Html(series, qi, flagClass, countryCode));
+            } else if (tt === "ae") {
+              if (countryCode === "BR" && qi === 2 && peerSeries) {
+                var brAes = aeTierInnerHtml(series, qi, flagClass, countryCode);
+                var arAes = aeTierInnerHtml(
+                  peerSeries,
+                  qi,
+                  "org-s7-node__flag--ar",
+                  "AR"
+                );
+                if (brAes || arAes) {
+                  h.push(
+                    '<div class="org-s7-ae-stack" title="AEs in AR report to Head for BR (26 Q4 model)">'
+                  );
+                  h.push(brAes + arAes);
+                  h.push("</div>");
+                }
+              } else {
+                var aeOnly = aeTierHtml(series, qi, flagClass, countryCode);
+                if (aeOnly) {
+                  h.push(aeOnly);
+                }
+              }
+            } else if (tt === "m4") {
+              h.push('<div class="org-s7-row">');
+              h.push(
+                '<div class="org-s7-node org-s7-node--m4">' +
+                  orgIcFlagHtml(flagClass, countryCode, qi) +
+                  '<div class="org-s7-node__role">Mgr L4</div>' +
+                  '<div class="org-s7-node__sub">Head of AMs</div>' +
+                  '<div class="org-s7-node__join">' +
+                  joinLineWithNewHire(series[IDX_M4], qi, 1) +
+                  "</div></div>"
+              );
+              h.push("</div>");
+            } else if (tt === "am") {
+              var amBlock = amTierInnerHtml(series, qi, flagClass, countryCode);
+              if (amBlock) {
+                h.push('<div class="org-s7-am-stack">' + amBlock + "</div>");
+              }
+            }
+          }
+
+          h.push("</div></div>");
+          return h.join("");
+        }
+
+        var out = [];
+        var sn;
+        for (sn = 0; sn < snapshots.length; sn++) {
+          var snap = snapshots[sn];
+          var qi = snap.qi;
+          var snapYear = hcQuarterYearFromLabel(quarterLabels[qi]);
+          var annualCombined =
+            snapYear !== null ? spendByYear[snapYear] : null;
+          var investmentLine = orgSlide7CardInvestmentHtml(
+            snapYear,
+            annualCombined
+          );
+          var pairClass = "org-s7-pair";
+          var pairInner;
+          var summary;
+          if (qi === 2) {
+            pairClass += " org-s7-pair--latam";
+            pairInner = latAmGeoColumn(seriesBr, seriesAr, qi);
+            summary =
+              snap.label +
+              ". LatAm single column (merged BR + AR AEs). BR M5 " +
+              (seriesBr[IDX_M5][qi] || 0) +
+              "; AR M5 " +
+              (seriesAr[IDX_M5][qi] || 0) +
+              ".";
+          } else {
+            pairInner =
+              countryGeoColumn("BR", seriesBr, qi, seriesAr) +
+              countryGeoColumn("AR", seriesAr, qi, seriesBr);
+            summary =
+              snap.label +
+              ". BR M5 " +
+              (seriesBr[IDX_M5][qi] || 0) +
+              "; AR M5 " +
+              (seriesAr[IDX_M5][qi] || 0) +
+              "; AE/AM per country on card.";
+          }
+          out.push(
+            '<article class="org-s7-card" aria-label="' +
+              escapeHtml(summary) +
+              '">' +
+              '<h3 class="org-s7-card__title">' +
+              escapeHtml(snap.label) +
+              "</h3>" +
+              '<div class="' +
+              pairClass +
+              '">' +
+              pairInner +
+              "</div>" +
+              investmentLine +
+              "</article>"
+          );
+        }
+
+        root.innerHTML = out.join("");
+        root.removeAttribute("aria-busy");
+      }
+
+      function hcCostCellHtml(amount, isTotalCell, annualTitle) {
+        if (amount <= 0) {
+          return "<td" + (isTotalCell ? ' class="hc-td--total"' : "") + ">—</td>";
+        }
+        var k = Math.round(amount / 1000);
+        var exactTitle = escapeHtml(
+          fmtIntEn(Math.round(amount)) + " USD" + (annualTitle ? " (annual total)" : "")
+        );
+        var inner = k < 1 ? "&lt;1k" : fmtIntEn(k) + "k";
+        return (
+          "<td" +
+          (isTotalCell ? ' class="hc-td--total"' : "") +
+          ' title="' +
+          exactTitle +
+          '">' +
+          inner +
+          "</td>"
+        );
+      }
+
+      function buildHcFteTable(quarters, series, roleNames, caption, footnote) {
+        function hcQuarterIsQ4(q) {
+          return /\bQ4\b/i.test(String(q));
+        }
+        function parseHcQuarterLabel(label) {
+          var m = String(label).match(/^(\d{2})\s+Q(\d)/i);
+          if (!m) {
+            return { yearFull: null, quarterLabel: String(label) };
+          }
+          return {
+            yearFull: 2000 + parseInt(m[1], 10),
+            quarterLabel: "Q" + m[2],
+          };
+        }
+        var yearGroups = [];
+        var gi;
+        for (gi = 0; gi < quarters.length; gi++) {
+          var yf = parseHcQuarterLabel(quarters[gi]).yearFull;
+          if (
+            yearGroups.length === 0 ||
+            yearGroups[yearGroups.length - 1].year !== yf
+          ) {
+            yearGroups.push({ year: yf, count: 1 });
+          } else {
+            yearGroups[yearGroups.length - 1].count++;
+          }
+        }
+        var yearRow = '<tr class="hc-thead-year-row"><th scope="col" rowspan="2">Role</th>';
+        yearGroups.forEach(function (g) {
+          var yrLabel =
+            g.year !== null && g.year !== undefined ? String(g.year) : "—";
+          yearRow +=
+            '<th scope="colgroup" colspan="' +
+            g.count +
+            '">' +
+            escapeHtml(yrLabel) +
+            "</th>";
+        });
+        yearRow += "</tr>";
+        var qRow = '<tr class="hc-thead-qtr-row">';
+        quarters.forEach(function (q) {
+          var parsed = parseHcQuarterLabel(q);
+          var q4 = hcQuarterIsQ4(q);
+          qRow +=
+            '<th scope="col"' +
+            (q4 ? ' class="hc-th--q4"' : "") +
+            ">" +
+            escapeHtml(parsed.quarterLabel) +
+            "</th>";
+        });
+        qRow += "</tr>";
+        var thead = "<thead>" + yearRow + qRow + "</thead>";
+        var tbody = "<tbody>";
+        var i;
+        var j;
+        for (j = 0; j < series.length; j++) {
+          tbody += "<tr><th scope=\"row\">" + escapeHtml(roleNames[j]) + "</th>";
+          for (i = 0; i < quarters.length; i++) {
+            var vf = series[j][i];
+            var q4c = hcQuarterIsQ4(quarters[i]);
+            tbody +=
+              "<td" +
+              (q4c ? ' class="hc-td--q4"' : "") +
+              ">" +
+              (vf === 0 ? "—" : String(vf)) +
+              "</td>";
+          }
+          tbody += "</tr>";
+        }
+        tbody += '<tr class="hc-tr--totals"><th scope="row">Total</th>';
+        for (i = 0; i < quarters.length; i++) {
+          var colSum = 0;
+          for (j = 0; j < series.length; j++) {
+            colSum += series[j][i];
+          }
+          var q4t = hcQuarterIsQ4(quarters[i]);
+          tbody +=
+            '<td class="hc-td--total' +
+            (q4t ? " hc-td--q4" : "") +
+            '">' +
+            (colSum === 0 ? "—" : fmtIntEn(colSum)) +
+            "</td>";
+        }
+        tbody += "</tr></tbody>";
+        var cap = footnote
+          ? "<caption>" + escapeHtml(footnote) + "</caption>"
+          : "";
+        return (
+          '<div class="hc-table-wrap"><table class="hc-table pl-table hc-table--qtr" aria-label="' +
+          escapeHtml(caption) +
+          '">' +
+          cap +
+          thead +
+          tbody +
+          "</table></div>"
+        );
+      }
+
+      function buildHcCostTable(quarterLabels, cor, opex, caption, footnote) {
+        function quarterYear(label) {
+          var m = String(label).match(/^(\d{2})\s+Q/i);
+          return m ? 2000 + parseInt(m[1], 10) : null;
+        }
+        var buckets = {};
+        var i;
+        for (i = 0; i < quarterLabels.length; i++) {
+          var y = quarterYear(quarterLabels[i]);
+          if (y === null) {
+            continue;
+          }
+          if (!buckets[y]) {
+            buckets[y] = { cor: 0, opex: 0 };
+          }
+          buckets[y].cor += cor[i] || 0;
+          buckets[y].opex += opex[i] || 0;
+        }
+        var years = Object.keys(buckets)
+          .map(function (k) {
+            return parseInt(k, 10);
+          })
+          .sort(function (a, b) {
+            return a - b;
+          });
+        var thead =
+          '<thead><tr><th scope="col">Line</th>' +
+          years
+            .map(function (yr) {
+              return "<th scope=\"col\">" + yr + "</th>";
+            })
+            .join("") +
+          "</tr></thead>";
+        var tbody = "<tbody>";
+        tbody += "<tr><th scope=\"row\">CoR</th>";
+        for (i = 0; i < years.length; i++) {
+          tbody += hcCostCellHtml(buckets[years[i]].cor, false, true);
+        }
+        tbody += "</tr><tr><th scope=\"row\">OPEX</th>";
+        for (i = 0; i < years.length; i++) {
+          tbody += hcCostCellHtml(buckets[years[i]].opex, false, true);
+        }
+        tbody += '</tr><tr class="hc-tr--totals"><th scope="row">Total</th>';
+        for (i = 0; i < years.length; i++) {
+          var b = buckets[years[i]];
+          tbody += hcCostCellHtml(b.cor + b.opex, true, true);
+        }
+        tbody += "</tr></tbody>";
+        var cap = footnote
+          ? "<caption>" + escapeHtml(footnote) + "</caption>"
+          : "";
+        return (
+          '<div class="hc-table-wrap"><table class="hc-table pl-table hc-table--cost-yearly" aria-label="' +
+          escapeHtml(caption) +
+          '">' +
+          cap +
+          thead +
+          tbody +
+          "</table></div>"
+        );
+      }
+
+      function wrapRampBarTrack(numEl, frac, tipAttrEscaped, barInner) {
+        return (
+          '<div class="ramp-bar-track"><div class="ramp-bar-track__inner">' +
+          '<div class="ramp-bar-spacer" aria-hidden="true"></div>' +
+          numEl +
+          '<div class="ramp-bar" style="--frac:' +
+          frac +
+          '" title="' +
+          tipAttrEscaped +
+          '">' +
+          barInner +
+          "</div></div></div>"
+        );
+      }
+
+      function buildRampStacked(labels, br, ar, maxTot, ariaLabel, colLabels, classBr, classAr, segTagBr, segTagAr) {
+        var cBr = classBr || "ramp-seg--br";
+        var cAr = classAr || "ramp-seg--ar";
+        var cols = [];
+        var i;
+        var tagMinPct = 11;
+        for (i = 0; i < labels.length; i++) {
+          var b = br[i];
+          var a = ar[i];
+          var t = b + a;
+          var frac = maxTot > 0 ? t / maxTot : 0;
+          var brH = t > 0 ? (b / t) * 100 : 0;
+          var arH = t > 0 ? (a / t) * 100 : 0;
+          var tip =
+            labels[i] +
+            ": BR " +
+            fmtIntEn(b) +
+            ", AR " +
+            fmtIntEn(a) +
+            " → total " +
+            fmtIntEn(t);
+          var inner = "";
+          if (t > 0) {
+            if (b > 0) {
+              var tb = "";
+              if (segTagBr && segTagBr[i] && brH >= tagMinPct) {
+                tb =
+                  '<span class="ramp-seg__lbl">' +
+                  escapeHtml(segTagBr[i]) +
+                  "</span>";
+              }
+              inner +=
+                '<div class="ramp-seg ' +
+                cBr +
+                (tb ? " ramp-seg--tagged" : "") +
+                '" style="height:' +
+                brH +
+                '%">' +
+                tb +
+                "</div>";
+            }
+            if (a > 0) {
+              var ta = "";
+              if (segTagAr && segTagAr[i] && arH >= tagMinPct) {
+                ta =
+                  '<span class="ramp-seg__lbl">' +
+                  escapeHtml(segTagAr[i]) +
+                  "</span>";
+              }
+              inner +=
+                '<div class="ramp-seg ' +
+                cAr +
+                (ta ? " ramp-seg--tagged" : "") +
+                '" style="height:' +
+                arH +
+                '%">' +
+                ta +
+                "</div>";
+            }
+          }
+          var numEl = "";
+          if (colLabels && colLabels[i]) {
+            numEl = '<span class="ramp-col__num">' + escapeHtml(colLabels[i]) + "</span>";
+          }
+          cols.push(
+            '<div class="ramp-col">' +
+              wrapRampBarTrack(numEl, frac, escapeHtml(tip), inner) +
+              '<span class="ramp-col__lab">' +
+              escapeHtml(labels[i]) +
+              "</span></div>"
+          );
+        }
+        return (
+          '<div class="ramp-chart ramp-chart--observe" role="img" aria-label="' +
+          escapeHtml(ariaLabel) +
+          '"><div class="ramp-chart__inner">' +
+          cols.join("") +
+          "</div></div>"
+        );
+      }
+
+      function buildRampStackedCost(labels, cor, opex, maxTot, ariaLabel, colLabels) {
+        var cols = [];
+        var i;
+        for (i = 0; i < labels.length; i++) {
+          var c = cor[i];
+          var o = opex[i];
+          var t = c + o;
+          var frac = maxTot > 0 ? t / maxTot : 0;
+          var corH = t > 0 ? (c / t) * 100 : 0;
+          var opxH = t > 0 ? (o / t) * 100 : 0;
+          var tip =
+            labels[i] +
+            ": CoR US$" +
+            fmtIntEn(Math.round(c)) +
+            ", OPEX US$" +
+            fmtIntEn(Math.round(o)) +
+            " → US$" +
+            fmtIntEn(Math.round(t));
+          var inner = "";
+          if (t > 0) {
+            if (c > 0) {
+              inner +=
+                '<div class="ramp-seg ramp-seg--cor" style="height:' + corH + '%"></div>';
+            }
+            if (o > 0) {
+              inner +=
+                '<div class="ramp-seg ramp-seg--opex" style="height:' + opxH + '%"></div>';
+            }
+          }
+          var numEl = "";
+          if (colLabels && colLabels[i]) {
+            numEl = '<span class="ramp-col__num">' + escapeHtml(colLabels[i]) + "</span>";
+          }
+          cols.push(
+            '<div class="ramp-col">' +
+              wrapRampBarTrack(numEl, frac, escapeHtml(tip), inner) +
+              '<span class="ramp-col__lab">' +
+              escapeHtml(labels[i]) +
+              "</span></div>"
+          );
+        }
+        return (
+          '<div class="ramp-chart ramp-chart--observe" role="img" aria-label="' +
+          escapeHtml(ariaLabel) +
+          '"><div class="ramp-chart__inner">' +
+          cols.join("") +
+          "</div></div>"
+        );
+      }
+
+      function buildRampMono(labels, vals, maxV, ariaLabel, fmtTip, colLabels, segClass, chartExtraClass, inBarLabels) {
+        var sc = segClass || "ramp-seg--mono";
+        var xc = chartExtraClass ? " " + chartExtraClass : "";
+        var cols = [];
+        var i;
+        for (i = 0; i < labels.length; i++) {
+          var v = vals[i];
+          var frac = maxV > 0 ? v / maxV : 0;
+          var tip = fmtTip(labels[i], v);
+          var ib = "";
+          if (v > 0 && inBarLabels && inBarLabels[i] && frac >= 0.14) {
+            ib =
+              '<span class="ramp-seg__lbl ramp-seg__lbl--inbar">' +
+              escapeHtml(inBarLabels[i]) +
+              "</span>";
+          }
+          var inner =
+            v > 0
+              ? '<div class="ramp-seg ' +
+                sc +
+                (ib ? " ramp-seg--tagged" : "") +
+                '" style="height:100%">' +
+                ib +
+                "</div>"
+              : "";
+          var numEl = "";
+          if (colLabels && colLabels[i]) {
+            numEl = '<span class="ramp-col__num">' + escapeHtml(colLabels[i]) + "</span>";
+          }
+          cols.push(
+            '<div class="ramp-col">' +
+              wrapRampBarTrack(numEl, frac, escapeHtml(tip), inner) +
+              '<span class="ramp-col__lab">' +
+              escapeHtml(labels[i]) +
+              "</span></div>"
+          );
+        }
+        return (
+          '<div class="ramp-chart ramp-chart--observe' +
+          xc +
+          '" role="img" aria-label="' +
+          escapeHtml(ariaLabel) +
+          '"><div class="ramp-chart__inner">' +
+          cols.join("") +
+          "</div></div>"
+        );
+      }
+
+      /** Grouped columns: BR + AR OffPay adoption % per quarter; both null → n/m cell; numeric 0 shows 0%. Scale bars to maxPct. */
+      function buildRampGroupedAdoption(labels, brPct, arPct, maxPct, ariaLabel) {
+        var cols = [];
+        var i;
+        for (i = 0; i < labels.length; i++) {
+          var b = brPct[i];
+          var a = arPct[i];
+          var pairInner;
+          if (b == null && a == null) {
+            pairInner =
+              '<div class="ramp-adopt-pair ramp-adopt-pair--nm" aria-hidden="true">' +
+              '<span class="ramp-adopt-nm">n/m</span></div>';
+          } else {
+            var fracB = b != null && b > 0 ? Math.min(1, b / maxPct) : 0;
+            var fracA = a != null && a > 0 ? Math.min(1, a / maxPct) : 0;
+            var tipB =
+              b == null
+                ? labels[i] + ": Brazil (n/m)"
+                : labels[i] + ": Brazil " + b.toFixed(1) + "%";
+            var tipA =
+              a == null
+                ? labels[i] + ": Argentina (n/m)"
+                : labels[i] + ": Argentina " + a.toFixed(1) + "%";
+            var innerB =
+              b != null && b > 0
+                ? '<div class="ramp-seg ramp-seg--s4m3-br" style="height:100%"></div>'
+                : "";
+            var innerA =
+              a != null && a > 0
+                ? '<div class="ramp-seg ramp-seg--s4m3-ar" style="height:100%"></div>'
+                : "";
+            var topB = b == null ? "" : b === 0 ? "0%" : b.toFixed(1) + "%";
+            var topA = a == null ? "" : a === 0 ? "0%" : a.toFixed(1) + "%";
+            function adoptCell(innerHtml, frac, tip, topLabel) {
+              var lab =
+                topLabel !== ""
+                  ? '<span class="ramp-adopt-val">' + escapeHtml(topLabel) + "</span>"
+                  : "";
+              return (
+                '<div class="ramp-adopt-cell">' +
+                '<div class="ramp-bar-track ramp-bar-track--adopt"><div class="ramp-bar-track__inner ramp-bar-track__inner--adopt" style="--frac:' +
+                frac +
+                '">' +
+                '<div class="ramp-bar-spacer" aria-hidden="true"></div>' +
+                '<div class="ramp-bar" style="--frac:' +
+                frac +
+                '" title="' +
+                escapeHtml(tip) +
+                '">' +
+                innerHtml +
+                "</div>" +
+                lab +
+                "</div></div></div>"
+              );
+            }
+            pairInner =
+              '<div class="ramp-adopt-pair">' +
+              adoptCell(innerB, fracB, tipB, topB) +
+              adoptCell(innerA, fracA, tipA, topA) +
+              "</div>";
+          }
+          cols.push(
+            '<div class="ramp-col ramp-col--adopt">' +
+              pairInner +
+              '<span class="ramp-col__lab">' +
+              escapeHtml(labels[i]) +
+              "</span></div>"
+          );
+        }
+        return (
+          '<div class="ramp-chart ramp-chart--observe ramp-chart--adoption" role="img" aria-label="' +
+          escapeHtml(ariaLabel) +
+          '"><div class="ramp-chart__inner ramp-chart__inner--adoption">' +
+          cols.join("") +
+          "</div></div>"
+        );
+      }
+
+      function renderRampCharts() {
+        var R_LAB = [
+          "26 Q2",
+          "26 Q3",
+          "26 Q4",
+          "27 Q1",
+          "27 Q2",
+          "27 Q3",
+          "27 Q4",
+          "28 Q1",
+          "28 Q2",
+          "28 Q3",
+          "28 Q4",
+        ];
+        var R_MERCH_BR = [0, 11, 54, 116, 187, 264, 338, 431, 542, 648, 749];
+        var R_MERCH_AR = [0, 0, 11, 54, 127, 208, 283, 372, 477, 587, 690];
+        /* PoS GMV (k USD/qtr) — Brazil / Argentina export (blank / n/m → 0). */
+        var R_GMV_BR_K = [
+          0, 651, 2943, 6463, 10638, 16024, 21742, 27631, 33865, 40239, 46229,
+        ];
+        var R_GMV_AR_K = [
+          0, 0, 651, 2943, 7113, 12591, 18463, 24249, 30420, 36842, 43011,
+        ];
+        var R_GMV_K = [];
+        var jq;
+        for (jq = 0; jq < R_LAB.length; jq++) {
+          R_GMV_K.push(R_GMV_BR_K[jq] + R_GMV_AR_K[jq]);
+        }
+        /* OffPay GPV (k USD/qtr) — Brazil / Argentina export (blank / n/m → 0). */
+        var R_GPV_BR = [0, 22, 174, 550, 1209, 2302, 3776, 5623, 7887, 10554, 13492];
+        var R_GPV_AR = [0, 0, 32, 289, 1080, 2530, 4329, 6406, 8929, 11891, 15148];
+        var R_GPV_K = [];
+        for (jq = 0; jq < R_LAB.length; jq++) {
+          R_GPV_K.push(R_GPV_BR[jq] + R_GPV_AR[jq]);
+        }
+        var root = document.getElementById("ramp-s4-stores");
+        if (!root) {
+          return;
+        }
+
+        function fmtUsdAnnFromK(kq) {
+          if (kq <= 0) {
+            return "—";
+          }
+          var usd = kq * 1000 * 4;
+          if (usd >= 1e9) {
+            return "US$" + (usd / 1e9).toFixed(2) + "B/yr";
+          }
+          if (usd >= 1e6) {
+            return "US$" + (usd / 1e6).toFixed(1) + "M/yr";
+          }
+          return "US$" + fmtIntEn(Math.round(usd / 1000)) + "k/yr";
+        }
+
+        function fmtUsdAnnMPerYearFromK(kq) {
+          if (kq <= 0) {
+            return "—";
+          }
+          var m = (kq * 1000 * 4) / 1e6;
+          if (m >= 1000) {
+            return (m / 1000).toFixed(2);
+          }
+          return m >= 10 ? m.toFixed(1) : m.toFixed(2);
+        }
+
+        function fmtSegUsdAnnFromKq(kq) {
+          if (kq <= 0) {
+            return "";
+          }
+          var m = (kq * 1000 * 4) / 1e6;
+          if (m < 0.01) {
+            return "";
+          }
+          return m >= 10 ? m.toFixed(1) : m.toFixed(2);
+        }
+
+        function splitCountryK(totalK, brM, arM) {
+          var t = brM + arM;
+          if (totalK <= 0 || t <= 0) {
+            return [0, 0];
+          }
+          var brK = Math.round((totalK * brM) / t);
+          return [brK, totalK - brK];
+        }
+
+        var i;
+        var gmvBr = [];
+        var gmvAr = [];
+        var gpvBr = [];
+        var gpvAr = [];
+        for (i = 0; i < R_LAB.length; i++) {
+          gmvBr.push(R_GMV_BR_K[i]);
+          gmvAr.push(R_GMV_AR_K[i]);
+          gpvBr.push(R_GPV_BR[i]);
+          gpvAr.push(R_GPV_AR[i]);
+        }
+
+        var maxGmvK = Math.max.apply(null, R_GMV_K);
+        var maxGpvK = Math.max.apply(null, R_GPV_K);
+
+        var labMerch = [];
+        var labGmvAnn = [];
+        var labGpvAnn = [];
+        var tagMBr = [];
+        var tagMAr = [];
+        var tagGmvBr = [];
+        var tagGmvAr = [];
+        var tagGpvBr = [];
+        var tagGpvAr = [];
+
+        for (i = 0; i < R_LAB.length; i++) {
+          var tmerch = R_MERCH_BR[i] + R_MERCH_AR[i];
+          labMerch.push(tmerch <= 0 ? "—" : fmtIntEn(tmerch));
+          labGmvAnn.push(fmtUsdAnnMPerYearFromK(R_GMV_K[i]));
+          labGpvAnn.push(fmtUsdAnnMPerYearFromK(R_GPV_K[i]));
+
+          var pmBr = tmerch > 0 ? (R_MERCH_BR[i] / tmerch) * 100 : 0;
+          var pmAr = tmerch > 0 ? (R_MERCH_AR[i] / tmerch) * 100 : 0;
+          tagMBr.push(pmBr >= 11 && R_MERCH_BR[i] > 0 ? fmtIntEn(R_MERCH_BR[i]) : "");
+          tagMAr.push(pmAr >= 11 && R_MERCH_AR[i] > 0 ? fmtIntEn(R_MERCH_AR[i]) : "");
+
+          var tg = gmvBr[i] + gmvAr[i];
+          var pgBr = tg > 0 ? (gmvBr[i] / tg) * 100 : 0;
+          var pgAr = tg > 0 ? (gmvAr[i] / tg) * 100 : 0;
+          tagGmvBr.push(pgBr >= 11 && gmvBr[i] > 0 ? fmtSegUsdAnnFromKq(gmvBr[i]) : "");
+          tagGmvAr.push(pgAr >= 11 && gmvAr[i] > 0 ? fmtSegUsdAnnFromKq(gmvAr[i]) : "");
+
+          var tgp = gpvBr[i] + gpvAr[i];
+          var ppBr = tgp > 0 ? (gpvBr[i] / tgp) * 100 : 0;
+          var ppAr = tgp > 0 ? (gpvAr[i] / tgp) * 100 : 0;
+          tagGpvBr.push(ppBr >= 11 && gpvBr[i] > 0 ? fmtSegUsdAnnFromKq(gpvBr[i]) : "");
+          tagGpvAr.push(ppAr >= 11 && gpvAr[i] > 0 ? fmtSegUsdAnnFromKq(gpvAr[i]) : "");
+        }
+
+        document.getElementById("ramp-s4-stores").innerHTML = buildRampStacked(
+          R_LAB,
+          R_MERCH_BR,
+          R_MERCH_AR,
+          1439,
+          "Number of stores on PoS (EoP) by quarter — Brazil and Argentina in stack.",
+          labMerch,
+          "ramp-seg--s4m1-br",
+          "ramp-seg--s4m1-ar",
+          tagMBr,
+          tagMAr
+        );
+        document.getElementById("ramp-s4-posgmv").innerHTML = buildRampStacked(
+          R_LAB,
+          gmvBr,
+          gmvAr,
+          maxGmvK,
+          "PoS GMV: quarterly BR + AR (k USD/qtr each); column tops are numeric run-rate in millions USD (×4).",
+          labGmvAnn,
+          "ramp-seg--s4m2-br",
+          "ramp-seg--s4m2-ar",
+          tagGmvBr,
+          tagGmvAr
+        );
+        var R_ADOPT_BR = [0, 3.4, 5.9, 8.5, 11.4, 14.4, 17.4, 20.3, 23.3, 26.2, 29.2];
+        var R_ADOPT_AR = [0, 0, 4.9, 9.8, 15.2, 20.1, 23.4, 26.4, 29.4, 32.3, 35.2];
+        var adoptRoot = document.getElementById("ramp-s4-adoption");
+        if (adoptRoot) {
+          adoptRoot.innerHTML = buildRampGroupedAdoption(
+            R_LAB,
+            R_ADOPT_BR,
+            R_ADOPT_AR,
+            40,
+            "Gateway OffPay adoption percent by quarter — grouped columns: Brazil (green) and Argentina (blue); 0% where export was blank or n/m."
+          );
+        }
+        document.getElementById("ramp-s4-offpaygpv").innerHTML = buildRampStacked(
+          R_LAB,
+          gpvBr,
+          gpvAr,
+          maxGpvK,
+          "Offline Payment GPV: quarterly total split BR/AR; column tops are numeric run-rate in millions USD (×4).",
+          labGpvAnn,
+          "ramp-seg--s4m4-br",
+          "ramp-seg--s4m4-ar",
+          tagGpvBr,
+          tagGpvAr
+        );
+      }
+
+      function renderHeadcountCharts() {
+        var HC_LAB = [
+          "26 Q2",
+          "26 Q3",
+          "26 Q4",
+          "27 Q1",
+          "27 Q2",
+          "27 Q3",
+          "27 Q4",
+          "28 Q1",
+          "28 Q2",
+          "28 Q3",
+          "28 Q4",
+        ];
+        var ROLE_NAMES_TABLE = ["AM L3", "AE L2/3", "Mgr L4/5"];
+
+        var BR_AM3 = [0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4];
+        var BR_AE2 = [0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2];
+        var BR_AE3 = [0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2];
+        var BR_M4 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1];
+        var BR_M5 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+        var seriesBr = [BR_AM3, BR_AE2, BR_AE3, BR_M4, BR_M5];
+        var BR_AE23 = BR_AE2.map(function (v, i) {
+          return v + BR_AE3[i];
+        });
+        var BR_M45 = BR_M4.map(function (v, i) {
+          return v + BR_M5[i];
+        });
+        var seriesBrTable = [BR_AM3, BR_AE23, BR_M45];
+
+        var AR_AM3 = [0, 0, 0, 0, 1, 1, 2, 3, 3, 4, 4];
+        var AR_AE2 = [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2];
+        var AR_AE3 = [0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 2];
+        var AR_M4 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1];
+        var AR_M5 = [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1];
+        var seriesAr = [AR_AM3, AR_AE2, AR_AE3, AR_M4, AR_M5];
+        var AR_AE23 = AR_AE2.map(function (v, i) {
+          return v + AR_AE3[i];
+        });
+        var AR_M45 = AR_M4.map(function (v, i) {
+          return v + AR_M5[i];
+        });
+        var seriesArTable = [AR_AM3, AR_AE23, AR_M45];
+
+        var BR_COR = [0, 0, 0, 8352, 8352, 13920, 16704, 25056, 28768, 32480, 36192];
+        var BR_OPEX = [16558, 26370, 32911, 32911, 42723, 42723, 42723, 49264, 49264, 62251, 62251];
+        var AR_COR = [0, 0, 0, 0, 9812, 14718, 19624, 24530, 29436, 34342, 39248];
+        var AR_OPEX = [0, 0, 9812, 16367, 22922, 29477, 36032, 42587, 49142, 55697, 62251];
+
+        renderOrgSlide7(
+          HC_LAB,
+          seriesBr,
+          seriesAr,
+          BR_COR,
+          BR_OPEX,
+          AR_COR,
+          AR_OPEX
+        );
+
+        var rootBr = document.getElementById("hc-br-headcount");
+        if (rootBr) {
+          document.getElementById("hc-br-headcount").innerHTML = buildHcFteTable(
+            HC_LAB,
+            seriesBrTable,
+            ROLE_NAMES_TABLE,
+            "Brazil commercial headcount FTE by role and quarter",
+            ""
+          );
+          document.getElementById("hc-ar-headcount").innerHTML = buildHcFteTable(
+            HC_LAB,
+            seriesArTable,
+            ROLE_NAMES_TABLE,
+            "Argentina commercial headcount FTE by role and quarter",
+            ""
+          );
+          document.getElementById("hc-br-cost").innerHTML = buildHcCostTable(
+            HC_LAB,
+            BR_COR,
+            BR_OPEX,
+            "Brazil commercial CoR and OPEX by calendar year (USD)",
+            ""
+          );
+          document.getElementById("hc-ar-cost").innerHTML = buildHcCostTable(
+            HC_LAB,
+            AR_COR,
+            AR_OPEX,
+            "Argentina commercial CoR and OPEX by calendar year (USD)",
+            ""
+          );
+        }
+      }
+
+      function renderPanel(containerId, rows, barPalette) {
+        var el = document.getElementById(containerId);
+        var pal = barPalette || "size";
+        el.innerHTML =
+          buildStackedMetricChart(
+            rows,
+            "stores",
+            "# of stores",
+            function (x) {
+              return fmtIntEn(x) + " stores";
+            },
+            pal
+          ) +
+          buildStackedMetricChart(
+            rows,
+            "gmv",
+            "GMV (US$/yr)",
+            function (x) {
+              if (x >= 1e9) {
+                return "US$ " + (x / 1e9).toFixed(2) + "B";
+              }
+              var m = Math.round(x / 1e6);
+              return "US$ " + String(m).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "M";
+            },
+            pal
+          ) +
+          buildStackedMetricChart(
+            rows,
+            "rev",
+            "Revenue (US$/yr)",
+            function (x) {
+              return "US$ " + (x / 1e6).toFixed(1) + "M";
+            },
+            pal
+          );
+      }
+
+      function renderLegend(containerId, keys, legendPalette) {
+        var el = document.getElementById(containerId);
+        var dotPrefix = legendPalette === "country" ? "legend-dot-country-" : "legend-dot-size-";
+        var parts = keys.map(function (k, i) {
+          return (
+            "<span><span class=\"legend-dot " +
+            dotPrefix +
+            i +
+            '\"></span>' +
+            escapeHtml(k) +
+            "</span>"
+          );
+        });
+        el.innerHTML = parts.join("");
+      }
+
+      renderPanel("panel-country", BY_COUNTRY, "country");
+      renderPanel("panel-size", BY_SIZE, "size");
+      renderLegend(
+        "legend-country",
+        BY_COUNTRY.map(function (r) {
+          return r.key;
+        }),
+        "country"
+      );
+      renderLegend(
+        "legend-size",
+        BY_SIZE.map(function (r) {
+          return r.key;
+        }),
+        "size"
+      );
+
+      renderRampCharts();
+      renderHeadcountCharts();
+
+      /* Chart animation: IntersectionObserver @ threshold 0.3 (design skill §4) */
+      var charts = document.querySelectorAll(".chart-container");
+      var rampCharts = document.querySelectorAll(".ramp-chart--observe");
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        rampCharts.forEach(function (rc) {
+          rc.classList.add("ramp-chart--ready");
+        });
+      }
+
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (en) {
+              if (!en.isIntersecting) {
+                return;
+              }
+              if (en.target.classList.contains("ramp-chart--observe")) {
+                en.target.classList.add("ramp-chart--ready");
+              } else {
+                en.target.classList.add("animate");
+              }
+            });
+          },
+          { threshold: 0.3, rootMargin: "0px 0px -5% 0px" }
+        );
+        charts.forEach(function (c) {
+          io.observe(c);
+        });
+        rampCharts.forEach(function (rc) {
+          io.observe(rc);
+        });
+      } else {
+        charts.forEach(function (c) {
+          c.classList.add("animate");
+        });
+        rampCharts.forEach(function (rc) {
+          rc.classList.add("ramp-chart--ready");
+        });
+      }
+
+      function updateDeckNav() {
+        var hash = window.location.hash || "#slide-0";
+        document.querySelectorAll("a[data-deck-nav]").forEach(function (link) {
+          if (link.getAttribute("href") === hash) {
+            link.setAttribute("aria-current", "page");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        });
+      }
+
+      window.addEventListener("hashchange", updateDeckNav);
+      updateDeckNav();
+    })();
+  </script>
+</body>
+</html>
