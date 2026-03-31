@@ -2406,9 +2406,268 @@
         padding-left: 0;
       }
     }
+
+    /* —— Comments system —— */
+    .comments-fab {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 9000;
+      width: 3.25rem;
+      height: 3.25rem;
+      border-radius: 50%;
+      border: none;
+      background: var(--color-primary);
+      color: var(--color-white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+      transition: background 0.2s var(--transition-smooth), transform 0.2s var(--transition-smooth);
+    }
+    .comments-fab:hover { background: var(--color-primary-light); transform: scale(1.08); }
+    .comments-fab svg { width: 1.35rem; height: 1.35rem; fill: currentColor; }
+    .comments-fab__badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      min-width: 1.15rem;
+      height: 1.15rem;
+      background: #ef4444;
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 0.3rem;
+      line-height: 1;
+    }
+    .comments-fab__badge:empty { display: none; }
+
+    .comments-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 9500;
+      width: min(420px, 92vw);
+      height: 100vh;
+      background: #0a1628;
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: -6px 0 32px rgba(0, 0, 0, 0.55);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.32s var(--transition-smooth);
+    }
+    .comments-panel--open { transform: translateX(0); }
+
+    .comments-panel__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      flex-shrink: 0;
+    }
+    .comments-panel__title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-white);
+      margin: 0;
+    }
+    .comments-panel__close {
+      background: none;
+      border: none;
+      color: var(--color-gray-400);
+      cursor: pointer;
+      font-size: 1.4rem;
+      line-height: 1;
+      padding: 0.25rem;
+    }
+    .comments-panel__close:hover { color: var(--color-white); }
+
+    .comments-panel__tabs {
+      display: flex;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      flex-shrink: 0;
+    }
+    .comments-panel__tab {
+      flex: 1;
+      padding: 0.6rem 0.5rem;
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--color-gray-400);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .comments-panel__tab:hover { color: var(--color-gray-200); }
+    .comments-panel__tab--active {
+      color: var(--color-primary-light);
+      border-bottom-color: var(--color-primary-light);
+    }
+
+    .comments-panel__body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem 1.25rem;
+    }
+
+    .comments-panel__empty {
+      text-align: center;
+      color: var(--color-gray-400);
+      font-size: 0.85rem;
+      padding: 2.5rem 1rem;
+    }
+
+    .comment-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 0.5rem;
+      padding: 0.75rem 0.85rem;
+      margin-bottom: 0.65rem;
+    }
+    .comment-item__meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.35rem;
+    }
+    .comment-item__author {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--color-primary-light);
+    }
+    .comment-item__slide {
+      font-size: 0.68rem;
+      color: var(--color-gray-400);
+      font-weight: 600;
+    }
+    .comment-item__time {
+      font-size: 0.68rem;
+      color: var(--color-gray-400);
+    }
+    .comment-item__text {
+      font-size: 0.82rem;
+      color: var(--color-gray-200);
+      line-height: 1.55;
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .comment-item__delete {
+      background: none;
+      border: none;
+      color: var(--color-gray-400);
+      cursor: pointer;
+      font-size: 0.7rem;
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .comment-item__delete:hover { color: #ef4444; background: rgba(239, 68, 68, 0.12); }
+
+    .comments-panel__form {
+      flex-shrink: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .comments-panel__form input,
+    .comments-panel__form textarea {
+      font-family: inherit;
+      font-size: 0.82rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.4rem;
+      padding: 0.5rem 0.65rem;
+      color: var(--color-gray-100);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .comments-panel__form input:focus,
+    .comments-panel__form textarea:focus {
+      border-color: var(--color-primary-light);
+    }
+    .comments-panel__form textarea {
+      resize: vertical;
+      min-height: 3.5rem;
+      max-height: 8rem;
+    }
+    .comments-panel__form-row {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .comments-panel__btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      transition: background 0.15s, opacity 0.15s;
+    }
+    .comments-panel__btn--submit {
+      background: var(--color-primary);
+      color: var(--color-white);
+      flex: 1;
+    }
+    .comments-panel__btn--submit:hover { background: var(--color-primary-light); }
+    .comments-panel__btn--export {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--color-gray-200);
+    }
+    .comments-panel__btn--export:hover { background: rgba(255, 255, 255, 0.14); }
+
+    .comments-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9400;
+      background: rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+    }
+    .comments-overlay--visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
   </style>
 </head>
 <body>
+  <button class="comments-fab" id="comments-fab" aria-label="Open comments" title="Comments">
+    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z"/></svg>
+    <span class="comments-fab__badge" id="comments-badge"></span>
+  </button>
+  <div class="comments-overlay" id="comments-overlay"></div>
+  <aside class="comments-panel" id="comments-panel" aria-label="Comments">
+    <div class="comments-panel__header">
+      <h2 class="comments-panel__title" id="comments-panel-title">Comments · Slide 0</h2>
+      <button class="comments-panel__close" id="comments-close" aria-label="Close comments">&times;</button>
+    </div>
+    <div class="comments-panel__tabs">
+      <button class="comments-panel__tab comments-panel__tab--active" data-comments-tab="slide">This slide</button>
+      <button class="comments-panel__tab" data-comments-tab="all">All comments</button>
+    </div>
+    <div class="comments-panel__body" id="comments-body"></div>
+    <form class="comments-panel__form" id="comments-form" autocomplete="off">
+      <input type="text" id="comments-author" placeholder="Your name" maxlength="60" required />
+      <textarea id="comments-text" placeholder="Write a comment…" rows="2" required></textarea>
+      <div class="comments-panel__form-row">
+        <button type="submit" class="comments-panel__btn comments-panel__btn--submit">Post comment</button>
+        <button type="button" class="comments-panel__btn comments-panel__btn--export" id="comments-export" title="Copy all comments to clipboard">Export</button>
+      </div>
+    </form>
+  </aside>
+
   <section class="slide-section slide-exec" id="slide-0">
     <div class="slide-exec__bg" aria-hidden="true"></div>
     <div class="slide-inner">
@@ -5072,6 +5331,209 @@
 
       window.addEventListener("hashchange", updateDeckNav);
       updateDeckNav();
+
+      /* —— Comments system —— */
+      (function initComments() {
+        var STORAGE_KEY = "pos-gtm-comments";
+        var AUTHOR_KEY = "pos-gtm-author";
+
+        var fab = document.getElementById("comments-fab");
+        var badge = document.getElementById("comments-badge");
+        var panel = document.getElementById("comments-panel");
+        var overlay = document.getElementById("comments-overlay");
+        var closeBtn = document.getElementById("comments-close");
+        var panelTitle = document.getElementById("comments-panel-title");
+        var body = document.getElementById("comments-body");
+        var form = document.getElementById("comments-form");
+        var authorInput = document.getElementById("comments-author");
+        var textInput = document.getElementById("comments-text");
+        var exportBtn = document.getElementById("comments-export");
+        var tabs = document.querySelectorAll("[data-comments-tab]");
+
+        var currentSlide = 0;
+        var activeTab = "slide";
+
+        var SLIDE_NAMES = {
+          0: "Executive summary",
+          1: "TAM size",
+          2: "GMV & Core coverage",
+          3: "Sales-Led economics",
+          4: "QoQ ramp",
+          5: "P&L",
+          6: "Org & HC"
+        };
+
+        function load() {
+          try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+          catch (_) { return []; }
+        }
+        function save(arr) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+        }
+
+        function detectSlide() {
+          var sections = document.querySelectorAll(".slide-section");
+          var best = 0;
+          var bestDist = Infinity;
+          var mid = window.innerHeight / 2;
+          sections.forEach(function (sec, i) {
+            var r = sec.getBoundingClientRect();
+            var d = Math.abs(r.top + r.height / 2 - mid);
+            if (d < bestDist) { bestDist = d; best = i; }
+          });
+          return best;
+        }
+
+        function updateBadge() {
+          var all = load();
+          badge.textContent = all.length > 0 ? all.length : "";
+        }
+
+        function fmtTime(ts) {
+          var d = new Date(ts);
+          var pad = function (n) { return n < 10 ? "0" + n : n; };
+          return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()) +
+            " " + pad(d.getHours()) + ":" + pad(d.getMinutes());
+        }
+
+        function renderComments() {
+          var all = load();
+          var list = activeTab === "slide"
+            ? all.filter(function (c) { return c.slide === currentSlide; })
+            : all.slice().sort(function (a, b) { return a.slide - b.slide || b.ts - a.ts; });
+
+          if (activeTab === "slide") {
+            panelTitle.textContent = "Comments · Slide " + currentSlide +
+              (SLIDE_NAMES[currentSlide] ? " · " + SLIDE_NAMES[currentSlide] : "");
+          } else {
+            panelTitle.textContent = "All comments (" + all.length + ")";
+          }
+
+          if (list.length === 0) {
+            body.innerHTML = '<p class="comments-panel__empty">' +
+              (activeTab === "slide" ? "No comments on this slide yet." : "No comments yet.") + "</p>";
+            return;
+          }
+
+          var html = "";
+          list.forEach(function (c) {
+            html += '<div class="comment-item" data-cid="' + c.id + '">' +
+              '<div class="comment-item__meta">' +
+              '<span class="comment-item__author">' + esc(c.author) + "</span>" +
+              (activeTab === "all" ? '<span class="comment-item__slide">Slide ' + c.slide +
+                (SLIDE_NAMES[c.slide] ? " · " + SLIDE_NAMES[c.slide] : "") + "</span>" : "") +
+              '<span style="display:flex;align-items:center;gap:0.4rem">' +
+              '<span class="comment-item__time">' + fmtTime(c.ts) + "</span>" +
+              '<button class="comment-item__delete" data-del="' + c.id + '" title="Delete">&times;</button>' +
+              "</span></div>" +
+              '<p class="comment-item__text">' + esc(c.text) + "</p></div>";
+          });
+          body.innerHTML = html;
+        }
+
+        function esc(s) {
+          var d = document.createElement("div");
+          d.appendChild(document.createTextNode(s));
+          return d.innerHTML;
+        }
+
+        function openPanel() {
+          currentSlide = detectSlide();
+          panel.classList.add("comments-panel--open");
+          overlay.classList.add("comments-overlay--visible");
+          renderComments();
+          var saved = localStorage.getItem(AUTHOR_KEY);
+          if (saved) authorInput.value = saved;
+        }
+
+        function closePanel() {
+          panel.classList.remove("comments-panel--open");
+          overlay.classList.remove("comments-overlay--visible");
+        }
+
+        fab.addEventListener("click", openPanel);
+        closeBtn.addEventListener("click", closePanel);
+        overlay.addEventListener("click", closePanel);
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && panel.classList.contains("comments-panel--open")) closePanel();
+        });
+
+        tabs.forEach(function (tab) {
+          tab.addEventListener("click", function () {
+            tabs.forEach(function (t) { t.classList.remove("comments-panel__tab--active"); });
+            tab.classList.add("comments-panel__tab--active");
+            activeTab = tab.getAttribute("data-comments-tab");
+            renderComments();
+          });
+        });
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var author = authorInput.value.trim();
+          var text = textInput.value.trim();
+          if (!author || !text) return;
+
+          localStorage.setItem(AUTHOR_KEY, author);
+          var all = load();
+          all.push({
+            id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+            slide: currentSlide,
+            author: author,
+            text: text,
+            ts: Date.now()
+          });
+          save(all);
+          textInput.value = "";
+          updateBadge();
+          renderComments();
+        });
+
+        body.addEventListener("click", function (e) {
+          var btn = e.target.closest("[data-del]");
+          if (!btn) return;
+          var id = btn.getAttribute("data-del");
+          var all = load().filter(function (c) { return c.id !== id; });
+          save(all);
+          updateBadge();
+          renderComments();
+        });
+
+        exportBtn.addEventListener("click", function () {
+          var all = load();
+          if (all.length === 0) { alert("No comments to export."); return; }
+          var lines = ["PoS GTM Sales Investment — Comments", "Exported: " + new Date().toLocaleString(), ""];
+          var bySlide = {};
+          all.forEach(function (c) {
+            if (!bySlide[c.slide]) bySlide[c.slide] = [];
+            bySlide[c.slide].push(c);
+          });
+          Object.keys(bySlide).sort(function (a, b) { return +a - +b; }).forEach(function (s) {
+            lines.push("## Slide " + s + (SLIDE_NAMES[+s] ? " — " + SLIDE_NAMES[+s] : ""));
+            bySlide[s].forEach(function (c) {
+              lines.push("- [" + fmtTime(c.ts) + "] " + c.author + ": " + c.text);
+            });
+            lines.push("");
+          });
+          var txt = lines.join("\n");
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(txt).then(function () {
+              exportBtn.textContent = "Copied!";
+              setTimeout(function () { exportBtn.textContent = "Export"; }, 2000);
+            });
+          } else {
+            var ta = document.createElement("textarea");
+            ta.value = txt;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand("copy");
+            document.body.removeChild(ta);
+            exportBtn.textContent = "Copied!";
+            setTimeout(function () { exportBtn.textContent = "Export"; }, 2000);
+          }
+        });
+
+        updateBadge();
+      })();
     })();
   </script>
 </body>
